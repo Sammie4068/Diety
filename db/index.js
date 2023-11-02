@@ -2,10 +2,10 @@ const { Client, ClientBase } = require("pg");
 require('dotenv').config();
 
 const client = new Client({
-    user: "okoro",
+    user: "hp",
     host: "localhost",
     database: "recipeapp",
-    password: process.env.db_password,
+    password: "1975",
     port: 5432,
 });
 client.connect().then(() => console.log("Connected to database..."));

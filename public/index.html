@@ -16,19 +16,25 @@
         <div class="signin-signup">
           <form action="#" class="sign-in-form">
             <h2 class="title">Sign in</h2>
+            <p id="sign-in-msg"></p>
+
             <div class="input-field">
               <i class="fas fa-envelope"></i>
               <input type="email" placeholder="Email" id="email-signin" />
-              <p id="email3-error-message"></p>
+              
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
+             
+              
               <input
                 type="password"
                 placeholder="Password"
                 id="password-signin"
               />
-              <p id="password3-error-message"></p>
+              <!-- <i class="fas fa-eye"></i>
+              <i class="fas fa-eye-slash"></i> -->
+            
             </div>
             <input type="submit" value="Login" class="btn solid" />
             <p class="social-text">Or Sign in with social platforms</p>
@@ -49,6 +55,7 @@
           </form>
           <form action="#" class="sign-up-form">
             <h2 class="title">Sign up</h2>
+            <p id="sign-up-msg"></p>
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" name="name" placeholder="Name" id="name" />
@@ -67,6 +74,8 @@
                 placeholder="Password"
                 id="password"
               />
+              <!-- <i class="fas fa-eye"></i>
+              <i class="fas fa-eye-slash"></i> -->
               <p class="errMsg" id="password-error-msg"></p>
             </div>
             <div class="input-field">
@@ -77,6 +86,8 @@
                 placeholder="Confirm Password"
                 id="password2"
               />
+              <!-- <i class="fas fa-eye"></i>
+              <i class="fas fa-eye-slash"></i> -->
               <p class="errMsg" id="password2-error-msg"></p>
             </div>
             <input type="submit" class="btn" value="Sign up" />

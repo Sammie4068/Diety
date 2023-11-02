@@ -27,6 +27,18 @@ input {
   left: 0;
 }
 
+#sign-up-msg{
+  color: #444;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+#sign-in-msg{
+  color: #444;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
 .signin-signup {
   position: absolute;
   top: 50%;

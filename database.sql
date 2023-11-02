@@ -3,8 +3,8 @@ CREATE DATABASE recipeapp
 
 -- creating users table
 CREATE TABLE users (
-   id serial PRIMARY KEY,
-   name VARCHAR(50),
-   email VARCHAR(50),
-   password VARCHAR
+    id serial PRIMARY KEY,
+    name VARCHAR NOT NULL,
+    email VARCHAR NOT NULL UNIQUE,
+    password VARCHAR
 );
