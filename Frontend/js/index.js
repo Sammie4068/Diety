@@ -1,3 +1,8 @@
+const tokenStr = localStorage.getItem("token");
+if (tokenStr) {
+  window.location = "home.html";
+}
+
 // Animation
 const sign_in_btn = document.querySelector("#sign-in-btn");
 const sign_up_btn = document.querySelector("#sign-up-btn");
@@ -37,7 +42,7 @@ SignupForm.addEventListener("submit", (e) => {
   ) {
     let userData = {
       name: username.value.trim(),
-      email: email.value.trim(),
+      email: email.value.trim().toLowerCase(),
       password: password.value,
     };
     postData(`${baseURL}register`, userData);
@@ -157,12 +162,9 @@ async function loginPost(url, data) {
       signinMsg.style.color = "red";
     }
     if (bodydata.message == "logged") {
-      signinEmail.value = "";
-      signinPassword.value = "";
-      signinMsg.textContent = "Logged In";
-      signinMsg.style.color = "green";
-      signinEmail.blur()
-      signinPassword.blur()
+      localStorage.setItem('token', bodydata.token)
+      localStorage.setItem('username', bodydata.username)
+      window.location = 'home.html'
     }
   } catch (err) {
     console.error(`Error: ${err}`);

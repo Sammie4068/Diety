@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/users", cors(), authRoute);
 
-const port = 3000;
+const port = process.env.PORT;
 
 app.get("/", (req, res) => {
   res.json({ message: "e dey work!!!" });

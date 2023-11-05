@@ -1,7 +1,5 @@
 const db = require("../../db");
 
-
-
 exports.getUserByEmail = async (email) => {
   return await db.query("SELECT * FROM users WHERE email=$1", [email]);
 };
@@ -16,3 +14,4 @@ exports.addUsers = async (user) => {
 exports.getAllUsers = async () => {
   return db.query("SELECT * FROM users")
 }
+
