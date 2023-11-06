@@ -4,7 +4,7 @@ if (!tokenStr) {
   window.location = "index.html";
 }
 
-document.getElementById("helloMsg").innerHTML = `Welcome  ${username.replace(username[0], username[0].toUpperCase())} 👋🏼`;
+document.getElementById("helloMsg").innerHTML = `Welcome  <span class='username'>${username.replace(username[0], username[0].toUpperCase())} 👋🏼</span>`;
 
 function logout() {
     localStorage.removeItem('token');

@@ -14,4 +14,3 @@ exports.addUsers = async (user) => {
 exports.getAllUsers = async () => {
   return db.query("SELECT * FROM users")
 }
-

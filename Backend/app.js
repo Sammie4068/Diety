@@ -2,14 +2,15 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
-const { authRoute } = require("./routes/index");
+const { authRoute, recipeRoute } = require("./routes/index");
 
 app.use(express.json());
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/users", cors(), authRoute);
+app.use("/api/v1", cors(), authRoute);
+app.use("/api/v1", cors(), recipeRoute);
 
 const port = process.env.PORT;
 

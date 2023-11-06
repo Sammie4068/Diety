@@ -1,6 +1,7 @@
 /* Reset some default styles */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Poppins:ital,wght@0,300;0,400;1,700&display=swap');
 
 * {
   margin: 0;
@@ -15,13 +16,31 @@ input {
 }
 /* Header styles */
 header {
-  background-color: #3498db;
+  background-color: #add9f0;
   padding: 10px 0;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1;
+  height: 6rem;
+}
+
+/* .header__logo{
+  margin-left: -6rem;
+  height: 3.3rem;
+  width: 5rem;
+} */
+
+.header__logo {
+  margin-left: -6rem;
+  /* height: 6.6rem; */
+  display: block;
+  /* width: 10rem; */
+  font-size: 3rem;
+  font-weight: 1000;
+  color: #2980b9;
+  font-family: "agbalumo", poppins;
 }
 
 nav {
@@ -34,16 +53,17 @@ nav {
 }
 
 #helloMsg {
-  color: #fff;
+  color: #333;
   font-size: 24px;
   font-weight: bold;
-  margin-left: -4rem;
+  margin-left: -6rem;
+  /* font-style: italic; */
 }
 
 .search-bar {
   display: flex;
   align-items: center;
-  margin-right: 1rem;
+  margin-right: 6rem;
 }
 
 input[type="text"] {
@@ -52,6 +72,7 @@ input[type="text"] {
   border-radius: 20px;
   width: 40rem;
   text-align: start;
+  background-color: #f0f0ff;
 }
 
 input::placeholder {
@@ -70,9 +91,9 @@ input::placeholder {
 }
 
 .search:hover {
-  background-color: #2980a9;
+  background-color: #fff;
   transition: background-color 0.3s;
-  color: white;
+  color: #2980a9;
 }
 
 .logout {
@@ -136,4 +157,9 @@ a:hover {
   background-color: #fff;
   transition: background-color 0.3s;
   color: #333;
+}
+
+.username{
+  color: #fff;
+  font-style: normal;
 }
