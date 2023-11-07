@@ -99,6 +99,22 @@ form.sign-in-form {
   font-size: 1.1rem;
 }
 
+/* .fa-eye{
+    margin-left: 20.5rem;
+    margin-top: -3.3rem;
+    cursor: pointer;
+} */
+
+#signinEyeIcon, #eyeIcon, #confirmEyeIcon{
+   margin-left: 20.5rem;
+    margin-top: -3.3rem;
+    cursor: pointer;
+}
+/* .fa-eye-slash{
+    margin-left: 16.7rem; 
+    margin-bottom: -14rem;
+} */
+
 .input-field input {
   background: none;
   outline: none;
@@ -146,7 +162,7 @@ form.sign-in-form {
 
 .btn {
   width: 150px;
-  background-color: #5995fd;
+  background-color: #00A6FD;
   border: none;
   outline: none;
   height: 49px;

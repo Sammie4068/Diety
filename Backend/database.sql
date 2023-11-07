@@ -1,5 +1,5 @@
 -- creating database
-CREATE DATABASE recipeapp
+CREATE DATABASE diety;
 
 -- creating users table
 CREATE TABLE users (

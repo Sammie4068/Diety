@@ -1,7 +1,7 @@
-const tokenStr = localStorage.getItem("token");
-if (!tokenStr) {
-  window.location = "index.html";
-}
+// const tokenStr = localStorage.getItem("token");
+// if (!tokenStr) {
+//   window.location = "index.html";
+// }
 
 const search = document.querySelector(".search");
 const searchInput = document.querySelector(".search__field");

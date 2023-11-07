@@ -162,9 +162,9 @@ async function loginPost(url, data) {
       signinMsg.style.color = "red";
     }
     if (bodydata.message == "logged") {
-      localStorage.setItem('token', bodydata.token)
-      localStorage.setItem('username', bodydata.username)
-      window.location = 'home.html'
+      localStorage.setItem("token", bodydata.token);
+      localStorage.setItem("username", bodydata.username);
+      window.location = "home.html";
     }
   } catch (err) {
     console.error(`Error: ${err}`);
@@ -179,3 +179,28 @@ signinForm.addEventListener("submit", (e) => {
   };
   loginPost(`${baseURL}login`, userData);
 });
+
+// Password show and hide
+const signinEyeIcon = document.getElementById("signinEyeIcon");
+const signupEyeIcon = document.getElementById("eyeIcon");
+const confirmEyeIcon = document.getElementById("confirmEyeIcon");
+
+function showpass(input, icon) {
+  if (input.type == "password") {
+    input.type = "text";
+    icon.innerHTML = `<i class="fas fa-eye-slash"></i>`;
+  } else {
+    input.type = "password";
+    icon.innerHTML = `<i class="fas fa-eye"></i>`;
+  }
+}
+
+signinEyeIcon.addEventListener("click", () =>
+  showpass(signinPassword, signinEyeIcon)
+);
+signupEyeIcon.addEventListener("click", () =>
+  showpass(password, signupEyeIcon)
+);
+confirmEyeIcon.addEventListener("click", () =>
+  showpass(confirmPassword, confirmEyeIcon)
+);
