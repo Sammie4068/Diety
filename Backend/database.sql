@@ -22,6 +22,18 @@ CREATE TABLE recipes (
     publisher VARCHAR NOT NULL
 );
 
+CREATE TABLE meals (
+    id serial PRIMARY KEY,
+    name VARCHAR NOT NULL,
+    image VARCHAR NOT NULL,
+    type VARCHAR NOT NULL,
+    category VARCHAR NOT NULL,
+    ingredients VARCHAR NOT NULL,
+    instructions VARCHAR NOT NULL,
+    timer VARCHAR NOT NULL,
+    publisher VARCHAR NOT NULL
+);
+
 -- inserting into recipe table
 INSERT INTO recipes (name, image, type, category, ingredients, description, timer, publisher) VALUES ('oatmeal', '/img/oatmeal.jpg', 'breakfast', 'diabetes', '1/2 cup of old-fashioned rolled oats (for one serving), 1 cup of milk (you can use water if you prefer, Optional sweeteners or flavorings: honey, maple syrup, brown sugar, cinnamon, vanilla extract, fresh fruits, nuts, or dried, fruits', 'Measure the Oats: Start by measuring out 1/2 cup of old-fashioned rolled oats. This amount is for one serving. If you are making oatmeal for multiple people, adjust the quantity accordingly.;Combine Oats and Liquid: In a saucepan, combine the oats and 1 cup of milk (or water) for every 1/2 cup of oats. use more liquid for thinner oatmeal or less for thicker oatmeal.;Cook the Oatmeal: Place the saucepan on the stove over medium heat.;Stir the oats and liquid frequently as they cook to prevent sticking or burning.;Oatmeal is ready when it thickens to your liking, typically within 5-10 minutes. You can cook it longer for a creamier consistency or shorter for a thicker one.;Sweeten and Flavor: Once the oatmeal is cooked to your desired consistency, you can add sweeteners and flavorings to taste. Common options include honey, maple syrup, brown sugar, cinnamon, a dash of vanilla extract, fresh fruits (e.g., sliced bananas, berries), nuts (e.g., almonds, walnuts), or dried fruits (e.g., raisins,cranberries).;Serve: Pour the oatmeal into a bowl and add your chosen toppings. You can get creative with the toppings to suit your preferences.;Enjoy: Your oatmeal is now ready to be enjoyed. Be careful as it will be hot, so let it cool a bit before eating.', '30 mins', 'Healthy Living');
 

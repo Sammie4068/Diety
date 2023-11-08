@@ -1,7 +1,7 @@
 const db = require("../../db");
 
 exports.getAllRecipes = async () => {
-    return db.query("SELECT * FROM recipes")
+    return db.query("SELECT * FROM meals")
 }
 
 exports.getType = async (type) => {

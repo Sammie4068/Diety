@@ -51,11 +51,11 @@ SignupForm.addEventListener("submit", (e) => {
 
 function nameValidation() {
   if (username.value === "") {
-    usernameErrMsg.innerText = "Please enter your name";
+    usernameErrMsg.innerText = "Please enter a username";
     usernameErrMsg.classList.add("error");
-  } else if (username.value.trim().length < 3) {
-    usernameErrMsg.innerText = "Name must be at least 3 characters";
-    usernameErrMsg.classList.add("error");
+  // } else if (username.value.trim().length < 3) {
+  //   usernameErrMsg.innerText = "Name must be at least 3 characters";
+  //   usernameErrMsg.classList.add("error");
   } else {
     usernameErrMsg.innerText = "";
     return true;
@@ -80,12 +80,12 @@ email.addEventListener("input", emailValidation);
 function passwordValidation() {
   if (password.value === "") {
     passwordErrMsg.innerText = "Please enter a password";
-    passwordErrMsg.style.marginLeft = "2rem";
+    passwordErrMsg.style.marginLeft = "-2rem";
     passwordErrMsg.classList.add("error");
   } else if (!password.value.match(passwordPattern)) {
     passwordErrMsg.innerHTML =
       "Please enter atleast 8 charatcer with number, symbol, small and capital letter.";
-    passwordErrMsg.style.marginLeft = "-6rem";
+    passwordErrMsg.style.marginLeft = "-10rem";
     passwordErrMsg.classList.add("error");
   } else {
     passwordErrMsg.innerText = "";
@@ -186,6 +186,7 @@ const signupEyeIcon = document.getElementById("eyeIcon");
 const confirmEyeIcon = document.getElementById("confirmEyeIcon");
 
 function showpass(input, icon) {
+  if(input.value == "") return
   if (input.type == "password") {
     input.type = "text";
     icon.innerHTML = `<i class="fas fa-eye-slash"></i>`;

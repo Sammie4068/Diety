@@ -1,7 +1,7 @@
-// const tokenStr = localStorage.getItem("token");
-// if (!tokenStr) {
-//   window.location = "index.html";
-// }
+const tokenStr = localStorage.getItem("token");
+if (!tokenStr) {
+  window.location = "index.html";
+}
 
 const search = document.querySelector(".search");
 const searchInput = document.querySelector(".search__field");
@@ -161,4 +161,17 @@ window.addEventListener("hashchange", showRecipe);
 // window.addEventListener("load", showRecipe);
 // window.addEventListener("load", ()=>{
 //   window.open("../frontend/explore.html")
+// })
+
+// // add recipe
+// const addRecipeBtn = document.querySelector(".nav__btn--add-recipe");
+// const addRecipeForm = document.querySelector(".add-recipe-window");
+// const overlay = document.querySelector(".overlay")
+
+
+// console.log(addRecipeBtn, addRecipeForm)
+
+// addRecipeBtn.addEventListener("click" ,() => {
+//   addRecipeForm.classList.remove("hidden")
+//   overlay.classList.remove("hidden")
 // })
