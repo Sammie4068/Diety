@@ -99,21 +99,11 @@ form.sign-in-form {
   font-size: 1.1rem;
 }
 
-/* .fa-eye{
-    margin-left: 20.5rem;
-    margin-top: -3.3rem;
-    cursor: pointer;
-} */
-
 #signinEyeIcon, #eyeIcon, #confirmEyeIcon{
    margin-left: 20.5rem;
     margin-top: -3.3rem;
     cursor: pointer;
 }
-/* .fa-eye-slash{
-    margin-left: 16.7rem; 
-    margin-bottom: -14rem;
-} */
 
 .input-field input {
   background: none;

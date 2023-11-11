@@ -47,6 +47,7 @@ const username = localStorage.getItem("username");
 const helloMsg = document.getElementById("helloMsg");
 const exploreBtn = document.querySelector(".explore_btn");
 const signoutBtn = document.querySelector(".signoutbtn");
+const profileBtn = document.querySelector(".profilebtn")
 
 if (!tokenStr) {
   exploreBtn.innerHTML = "Sign in to Explore";
@@ -59,11 +60,14 @@ if (!tokenStr) {
   });
   helloMsg.innerHTML = `Welcome  <span class='username'>${username} 👋🏼</span>`;
 
+  profileBtn.classList.remove("hidden")
   signoutBtn.classList.remove("hidden");
   signoutBtn.addEventListener("click", logout);
-  function logout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("username");
-    window.location.href = "index.html";
-  }
+}
+
+function logout() {
+  // localStorage.removeItem("token");
+  // localStorage.removeItem("username");
+  localStorage.clear()
+  window.location.href = "index.html";
 }

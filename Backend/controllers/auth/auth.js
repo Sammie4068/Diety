@@ -12,7 +12,9 @@ exports.getUsers = async (req, res) => {
 exports.login = async (req, res, next) => {
   try {
     const foundUser = await getUserByEmail(req.body.email);
-    const username = foundUser.rows[0].name
+
+    const { id, name, email, phone, bookmarks} = foundUser.rows[0]
+    console.log(id, name, email, phone)
     if (foundUser.rows.length === 0) {
       return res.json({ message: "Invalid" });
     }
@@ -23,11 +25,11 @@ exports.login = async (req, res, next) => {
     if (hashedPassword === false) {
       return res.json({ message: "Invalid" });
     }
-    const token = jwt.sign({ username }, secret, {
+    const token = jwt.sign({ name }, secret, {
       expiresIn: 60 * 60,
     });
-    console.log(res.status)
-    return res.json({ token, message: "logged", username});
+
+    return res.json({ token, message: "logged", id, name, email, phone, bookmarks});
   } catch (err) {
     return next(err);
   }
@@ -46,7 +48,7 @@ exports.register = async (req, res, next) => {
         hashedPassword,
       };
       const result = await addUsers(user);
-      res.json({ message: "Success" });
+      res.json({ message: "success" });
     }
   } catch (err) {
     return next(err);

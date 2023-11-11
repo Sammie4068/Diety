@@ -53,9 +53,6 @@ function nameValidation() {
   if (username.value === "") {
     usernameErrMsg.innerText = "Please enter a username";
     usernameErrMsg.classList.add("error");
-  // } else if (username.value.trim().length < 3) {
-  //   usernameErrMsg.innerText = "Name must be at least 3 characters";
-  //   usernameErrMsg.classList.add("error");
   } else {
     usernameErrMsg.innerText = "";
     return true;
@@ -162,8 +159,12 @@ async function loginPost(url, data) {
       signinMsg.style.color = "red";
     }
     if (bodydata.message == "logged") {
+      localStorage.setItem("id", bodydata.id);
       localStorage.setItem("token", bodydata.token);
-      localStorage.setItem("username", bodydata.username);
+      localStorage.setItem("username", bodydata.name);
+      localStorage.setItem("email", bodydata.email)
+      localStorage.setItem("phone", bodydata.phone)
+      localStorage.setItem("bookmarks", bodydata.bookmarks)
       window.location = "home.html";
     }
   } catch (err) {

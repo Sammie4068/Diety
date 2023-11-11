@@ -5,6 +5,7 @@ const {
   getMealCategory,
   getRecipesByID,
   getFilteredNameMeal,
+  updateUserProfile,
 } = require("./users/user");
 const { addMealRecipes } = require("./admin/admin")
 
@@ -19,4 +20,5 @@ module.exports = {
   getRecipesByID,
   addMealRecipes,
   getFilteredNameMeal,
+  updateUserProfile,
 };

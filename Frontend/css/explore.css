@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Agbalumo&family=Poppins:ital,wght@0,300;0,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
 * {
   margin: 0;
@@ -22,7 +23,7 @@ html {
 }
 
 body {
-  font-family: "Nunito Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
   line-height: 1.6;
   color: #515a61;
@@ -31,13 +32,9 @@ body {
 }
 
 .container {
-  /* max-width: 120rem;
-    min-height: 117rem; */
-  /* margin: 4vw auto; */
   background-color: #fff;
   border-radius: 9px;
   overflow: hidden;
-  /* box-shadow: 0 2rem 6rem 0.5rem rgba(97, 85, 81, 0.2); */
   display: grid;
   grid-template-rows: 10rem minmax(100rem, auto);
   grid-template-columns: 1fr 2fr;
@@ -55,11 +52,9 @@ body {
 .btn--small:link,
 .btn--small:visited,
 .btn {
-  /* background-image: linear-gradient(to right bottom, #fbdb89, #f48982); */
   background: #2980b9;
   border-radius: 20px;
   border: none;
-  /* text-transform: uppercase; */
   color: #fff;
   cursor: pointer;
   display: flex;
@@ -137,7 +132,6 @@ body {
 }
 
 .btn--round {
-  /* background-image: linear-gradient(to right bottom, #fbdb89, #f48982); */
   background: #2980b9;
   border-radius: 50%;
   border: none;
@@ -148,6 +142,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 1.5rem;
 }
 .btn--round:hover {
   transform: scale(1.07);
@@ -248,7 +243,6 @@ body {
   font-size: 1.8rem;
   line-height: 1.5;
   font-weight: 600;
-  /* color: #fff; */
 }
 
 .header {
@@ -274,7 +268,7 @@ a {
 
 .filter {
   width: 100px;
-  margin-left: 330px;
+  margin-left: 20rem;
   height: 30px;
   border-radius: 20px;
   border: none;
@@ -283,8 +277,13 @@ a {
   cursor: pointer;
   padding-left: 15px;
   font-weight: 600;
-  font-family: "Nunito Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.5rem;
+  outline: none;
+}
+
+.filter:hover{
+  transform: scale(1.07);
 }
 
 .filter::placeholder {
@@ -293,7 +292,7 @@ a {
   text-transform: capitalize;
   font-weight: 600;
   /* font-family: inherit; */
-  font-family: "Nunito Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.5rem;
 }
 
@@ -307,7 +306,7 @@ a {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   /* overflow-y: scroll; */
   margin-top: 5px;
-  margin-left: 340px;
+  margin-left: 20rem;
   width: 100px;
   z-index: 9;
 }
@@ -396,7 +395,8 @@ a {
 .nav__btn svg {
   height: 2.4rem;
   width: 2.4rem;
-  fill: #2980b9;
+  /* fill: #2980b9; */
+  fill: #fff;
   margin-right: 0.7rem;
   transform: translateY(-1px);
 }
@@ -439,6 +439,10 @@ a {
   opacity: 1;
 }
 
+.nav__btn--bookmarks svg{
+  fill: #2980b9;
+}
+
 .preview__link:link,
 .preview__link:visited {
   display: flex;
@@ -448,15 +452,13 @@ a {
   border-right: 1px solid #fff;
   text-decoration: none;
   background-color: #fef8e8;
-  /* background-color: #f0f0f0; */
-  /* background: rgba(255, 223, 186, 0.8); */
+  border-bottom: 1px solid #2980b9;
 }
 .preview__link:hover {
   background-color: #c7ced7;
   transform: translateY(-2px);
 }
 .preview__link--active {
-  /* background-color: #000; */
   background-color: #70a7cd;
 }
 .preview__fig {
@@ -476,7 +478,6 @@ a {
   position: absolute;
   top: 0;
   left: 0;
-  /* background-image: linear-gradient(to right bottom, #fbdb89, #f48982); */
   background: #2980b9;
   opacity: 0.4;
 }
@@ -538,7 +539,6 @@ a {
 .results {
   list-style: none;
   margin-bottom: 2rem;
-   /* height: 100vh; */
    max-height: 155vh;
   overflow-y:scroll;
 }
@@ -561,10 +561,6 @@ a {
 
 .recipe {
   background-color: #f3f7f9;
-  /* background: url(../img/exploreHero.jpg);
-    background-repeat: no-repeat;
-    background-size: cover; */
-  /* background: rgba(255, 223, 186, 0.4); */
 }
 .recipe__fig {
   height: 32rem;
@@ -579,7 +575,6 @@ a {
   position: absolute;
   top: 0;
   left: 0;
-  /* background-image: linear-gradient(to right bottom, #fbdb89, #f48982); */
   background: #2980b9;
   opacity: 0.3;
 }
@@ -606,9 +601,18 @@ a {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   padding: 1.3rem 2rem;
-  /* background-image: linear-gradient(to right bottom, #fbdb89, #f48982); */
   background: #2980b9;
 }
+
+.down_btn{
+  display: flex;
+
+}
+
+.btn--small{
+  margin: 3rem;
+}
+
 @media only screen and (max-width: 61.25em) {
   .recipe__title {
     width: 70%;
@@ -625,6 +629,7 @@ a {
   display: flex;
   align-items: center;
 }
+
 .recipe__info:not(:last-child) {
   margin-right: 4.5rem;
 }
@@ -719,7 +724,6 @@ a {
   z-index: 1000;
   transition: all 0.5s;
   font-family: "Nunito";
-  /* height: 100vh; */
   overflow-y:scroll;
 }
 
@@ -739,16 +743,13 @@ a {
 }
 
 .close-modal:hover {
-  /* color: white; */
   color: #2980b9;
 }
 
 .instructions{
-  /* border: 1px solid red; */
   font-size: 1.8rem;
   font-weight: 900;
-  font-family: "Nunito", sans-serif;
-   /* list-style: none; */
+  font-family: "Poppins", sans-serif;
    list-style: decimal;
 }
 
@@ -762,6 +763,7 @@ a {
   backdrop-filter: blur(4px);
   z-index: 100;
   transition: all 0.5s;
+  cursor: pointer;
 }
 
 

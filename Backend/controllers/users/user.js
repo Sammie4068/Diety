@@ -5,6 +5,8 @@ const {
   getCategory,
   getRecipeByID,
   getFilteredName,
+  addBookmark,
+  updateUser
 } = require("../../models/index");
 
 exports.getRecipes = async (req, res, next) => {
@@ -73,6 +75,25 @@ exports.getFilteredNameMeal = async (req, res, next) => {
        rec.instructions = JSON.parse(rec.instructions);
      });
      res.json(result);
+  } catch (err) {
+    next(err)
+  }
+}
+
+// exports.addToBookMark = async (req, res, next) => {
+//   try {
+//     const recipeID = []
+//     const results = await addBookmark([recipeID])
+//   } catch (err) {
+//     next(err)
+//   }
+// }
+
+exports.updateUserProfile = async (req, res, next) => {
+  try {
+    const { name, email, phone, id } = req.body
+     await updateUser(name, email, phone, id)
+    return res.json({ message: "success"})
   } catch (err) {
     next(err)
   }

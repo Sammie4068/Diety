@@ -119,6 +119,11 @@ async function showRecipe() {
     </div>
     <button class="btn--round">
       <svg class="">
+        <use href="./img/icons.svg#icon-cart"></use>
+      </svg>
+    </button>
+    <button class="btn--round">
+      <svg class="">
         <use href="./img/icons.svg#icon-bookmark-fill"></use>
       </svg>
     </button>
@@ -150,15 +155,33 @@ async function showRecipe() {
         data[0].publisher.charAt(0).toUpperCase()
       )}</span>.
     </p>
+    <div class="down_btn">
     <button
       class="btn--small recipe__btn"
       onclick="recipeModal(${id})"
     >
-      <span>Directions</span>
+      <span>Instructions</span>
+       <svg class="">
+        <use href="./img/icons.svg#icon-instruction"></use>
+      </svg> 
+    </button>
+    <button
+      class="btn--small"
+    >
+      <span> Make Order </span> 
+         <svg class="">
+        <use href="./img/icons.svg#icon-cart"></use>
+      </svg>  
+    </button>
+    <button
+      class="btn--small"
+    >
+      <span> Meet Nutritionist </span>
       <svg class="search__icon">
         <use href="./img/icons.svg#icon-arrow-right"></use>
       </svg>
     </button>
+    </div>
   </div>`;
 
     recipeContainer.innerHTML = "";
@@ -201,7 +224,7 @@ async function displayRecipes() {
 const filterInput = document.querySelector(".filter");
 const filterList = document.getElementById("filter-dropdown");
 
-filterInput.addEventListener("click", function () {
+filterInput.addEventListener("mouseover", function () {
   if (filterList.style.display == "block") {
     filterList.style.display = "none";
   } else {
@@ -262,6 +285,7 @@ async function recipeModal(id) {
   div.classList.add("instructions");
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
+  overlay.addEventListener("click", closeModal);
   modal.append(div);
 }
 
@@ -270,3 +294,6 @@ function closeModal() {
   overlay.classList.add("hidden");
   modal.innerHTML = "";
 }
+
+// Bookmarks
+const bookmark = document.querySelector("")

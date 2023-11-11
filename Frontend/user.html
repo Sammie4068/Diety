@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./css/user.css" />
+  </head>
+  <body>
+    <header>
+      <a href="home.html"><h4 class="header__logo">Diety</h4></a>
+      <h1 class="title">User Profile</h1>
+    </header>
+
+    <div class="container">
+      <div class="profile">
+        <img src="./img/exploreHero.jpg" alt="Profile Picture" />
+        <div class="profile-info">
+          <span>
+            <label>Name: </label>
+            <input class="name" type="text" value="John Doe" readonly />
+          </span>
+          <span>
+            <label>E-mail: </label>
+            <input
+              class="email"
+              type="text"
+              value="john.doe@example.com"
+              readonly
+            />
+          </span>
+          <span>
+            <label>Phone: </label>
+            <input class="phone" type="text" value="07034824815" readonly />
+          </span>
+        </div>
+        <a href="#" class="button" id="edit__btn">Edit Profile</a>
+      </div>
+      <hr />
+      <h2>Bookmarked Recipes</h2>
+      <p>No Bookmarks yet</p>
+      <hr />
+      <h2>Purchase history</h2>
+      <p>No Purchases yet</p>
+    </div>
+
+    <script src="./js/user.js"></script>
+  </body>
+</html>
