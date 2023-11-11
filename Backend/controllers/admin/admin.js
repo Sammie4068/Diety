@@ -14,7 +14,6 @@ exports.addMealRecipes = async (req, res, next) => {
       publisher: req.body.publisher,
     };
     const result = await addRecipes(recipe);
-    console.log(req.body);
     res.json({ message: "Success" });
   } catch (err) {
     return next(err);

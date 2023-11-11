@@ -55,7 +55,7 @@ if (!tokenStr) {
   });
 } else {
   exploreBtn.addEventListener("click", () => {
-    window.location = "explore.html";
+    window.location = "explore.html#22";
   });
   helloMsg.innerHTML = `Welcome  <span class='username'>${username} 👋🏼</span>`;
 

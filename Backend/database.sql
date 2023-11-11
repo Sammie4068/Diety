@@ -29,7 +29,7 @@ CREATE TABLE meals (
     type VARCHAR NOT NULL,
     category VARCHAR NOT NULL,
     ingredients VARCHAR NOT NULL,
-    instructions VARCHAR NOT NULL,
+    instruction VARCHAR NOT NULL,
     timer VARCHAR NOT NULL,
     publisher VARCHAR NOT NULL
 );

@@ -11,7 +11,13 @@ search.addEventListener("submit", (e) => {
   e.preventDefault();
   const searchTerm = searchInput.value;
   if (!searchTerm) return;
-  getRecipes(`${baseURL}recipes/category/${searchTerm}`);
+
+  renderSpinner(results);
+  getRecipes(
+    `${baseURL}recipes/name/${searchTerm
+      .toLowerCase()
+      .replace(searchTerm.charAt(0), searchTerm.charAt(0).toUpperCase())}`
+  );
 });
 
 // Get recipes
@@ -21,19 +27,20 @@ async function getRecipes(url) {
   try {
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     renderSpinner(results);
     if (data.length === 0) {
-      renderError(recipeContainer);
+      renderError(results);
     }
-    // preview
+
+    //  Preview
     results.innerHTML = "";
     setTimeout(() => {
       data.map((bodydata) => {
         let markup = `<li class="preview">
               <a class="preview__link preview__link--active" href="#${bodydata.id}">
               <figure class="preview__fig">
-                  <img src=".${bodydata.image}" alt="${bodydata.name}" />
+                  <img src="./img/${bodydata.image}" alt="${bodydata.name}" />
               </figure>
               <div class="preview__data">
                   <h4 class="preview__title">${bodydata.name}</h4>
@@ -41,7 +48,6 @@ async function getRecipes(url) {
               </div>
               </a>
           </li>`;
-        // results.innerHTML = "";
         results.insertAdjacentHTML("afterbegin", markup);
       });
     }, 1000);
@@ -52,13 +58,18 @@ async function getRecipes(url) {
 
 //spinner
 const renderSpinner = function (parentEle) {
-  if ((parentEle.innerHTML === "")) {
+  if (parentEle.innerHTML === "") {
     const markup = `<div class="spinner">
       <svg>
         <use href="./img/icons.svg#icon-loader"></use>
       </svg>
     </div>`;
-    parentEle.insertAdjacentHTML("afterbegin", markup);
+    parentEle.insertAdjacentHTML("afterend", markup);
+
+    const spinner = document.querySelector(".spinner");
+    setTimeout(() => {
+      spinner.style.display = "none";
+    }, 1500);
   } else {
     return;
   }
@@ -74,7 +85,7 @@ const renderError = function (parentEle) {
     <p>We could not find that recipe, try another one</p>
   </div>`;
   parentEle.innerHTML = "";
-  parentEle.insertAdjacentHTML("afterbegin", markup);
+  parentEle.insertAdjacentHTML("beforeend", markup);
 };
 
 // View
@@ -86,10 +97,11 @@ async function showRecipe() {
     if (!id) return;
     const res = await fetch(`http://localhost:3000/api/v1/recipes/id/${id}`);
     const data = await res.json();
-    console.log(data);
 
     const markup = `<figure class="recipe__fig">
-    <img src=".${data[0].image}" alt="${data[0].name}" class="recipe__img" />
+    <img src="./img/${data[0].image}" alt="${
+      data[0].name
+    }" class="recipe__img" />
     <h1 class="recipe__title">
       <span>${data[0].name}</span>
     </h1>
@@ -100,9 +112,9 @@ async function showRecipe() {
       <svg class="recipe__info-icon">
         <use href="./img/icons.svg#icon-clock"></use>
       </svg>
-      <span class="recipe__info-data recipe__info-data--minutes">${data[0].timer
-        .split(" ")
-        .shift()}</span>
+      <span class="recipe__info-data recipe__info-data--minutes">${
+        data[0].timer
+      }</span>
       <span class="recipe__info-text">minutes</span>
     </div>
     <button class="btn--round">
@@ -116,7 +128,6 @@ async function showRecipe() {
     <h2 class="heading--2">Recipe ingredients</h2>
     <ul class="recipe__ingredient-list">
     ${data[0].ingredients
-      .split(",")
       .map((ing) => {
         return `<li class="recipe__ingredient">
       <svg class="recipe__icon">
@@ -139,15 +150,15 @@ async function showRecipe() {
         data[0].publisher.charAt(0).toUpperCase()
       )}</span>.
     </p>
-    <a
+    <button
       class="btn--small recipe__btn"
-      href="#"_blank"
+      onclick="recipeModal(${id})"
     >
       <span>Directions</span>
       <svg class="search__icon">
         <use href="./img/icons.svg#icon-arrow-right"></use>
       </svg>
-    </a>
+    </button>
   </div>`;
 
     recipeContainer.innerHTML = "";
@@ -158,20 +169,104 @@ async function showRecipe() {
 }
 
 window.addEventListener("hashchange", showRecipe);
-// window.addEventListener("load", showRecipe);
-// window.addEventListener("load", ()=>{
-//   window.open("../frontend/explore.html")
-// })
+window.addEventListener("load", displayRecipes);
+window.addEventListener("load", showRecipe);
 
-// // add recipe
-// const addRecipeBtn = document.querySelector(".nav__btn--add-recipe");
-// const addRecipeForm = document.querySelector(".add-recipe-window");
-// const overlay = document.querySelector(".overlay")
+//fetching all recipes
+async function displayRecipes() {
+  try {
+    const res = await fetch(`http://localhost:3000/api/v1/recipes`);
+    const data = await res.json();
 
+    data.map((bodydata) => {
+      let markup = `<li class="preview">
+              <a class="preview__link preview__link--active" href="#${bodydata.id}">
+              <figure class="preview__fig">
+                  <img src="./img/${bodydata.image}" alt="${bodydata.name}" />
+              </figure>
+              <div class="preview__data">
+                  <h4 class="preview__title">${bodydata.name}</h4>
+                  <p class="preview__publisher">${bodydata.publisher}</p>
+              </div>
+              </a>
+          </li>`;
+      results.insertAdjacentHTML("afterbegin", markup);
+    });
+  } catch (err) {
+    console.error(err);
+  }
+}
 
-// console.log(addRecipeBtn, addRecipeForm)
+// filter dropdown
+const filterInput = document.querySelector(".filter");
+const filterList = document.getElementById("filter-dropdown");
 
-// addRecipeBtn.addEventListener("click" ,() => {
-//   addRecipeForm.classList.remove("hidden")
-//   overlay.classList.remove("hidden")
-// })
+filterInput.addEventListener("click", function () {
+  if (filterList.style.display == "block") {
+    filterList.style.display = "none";
+  } else {
+    filterList.style.display = "block";
+  }
+});
+
+document.addEventListener("click", function (event) {
+  if (event.target !== filterInput && event.target !== filterList) {
+    filterList.style.display = "none";
+  }
+});
+
+filterList.addEventListener("click", function (event) {
+  if (event.target.tagName === "LI") {
+    filterInput.value = event.target.textContent;
+    filterList.style.display = "none";
+    let filtered = filterInput.value;
+    const searchTerm = searchInput.value;
+    if (!searchTerm && filtered) {
+      getRecipes(`${baseURL}recipes/category/${filtered}`);
+    }
+
+    getRecipes(
+      `${baseURL}recipes/${searchTerm
+        .toLowerCase()
+        .replace(
+          searchTerm.charAt(0),
+          searchTerm.charAt(0).toUpperCase()
+        )}/${filtered}`
+    );
+  }
+});
+
+// direction modal
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const btnCloseModal = document.querySelector(".close-modal");
+
+async function recipeModal(id) {
+  const div = document.createElement("ul");
+  div.insertAdjacentHTML(
+    "beforeend",
+    `<button class="close-modal" onclick="closeModal()">&times;</button>`
+  );
+
+  const response = await fetch(`http://localhost:3000/api/v1/recipes/id/${id}`);
+  const data = await response.json();
+
+  const instructionsArray = data[0].instructions;
+  console.log(instructionsArray);
+  for (let i = 0; i < instructionsArray.length; i++) {
+    div.insertAdjacentHTML(
+      "beforeend",
+      `<li class="instructionList">${instructionsArray[i]}</li>`
+    );
+  }
+  div.classList.add("instructions");
+  modal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+  modal.append(div);
+}
+
+function closeModal() {
+  modal.classList.add("hidden");
+  overlay.classList.add("hidden");
+  modal.innerHTML = "";
+}

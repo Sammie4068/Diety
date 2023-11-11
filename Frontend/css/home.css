@@ -36,11 +36,11 @@ html {
 ::-webkit-scrollbar {
   height: 12px;
   width: 4px;
-  background: #add9f0;
+  background: var(--lite);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary);
+  background: var(--dark);
   -webkit-box-shadow: 0px 1px 2px var(--dark);
 }
 
@@ -75,7 +75,8 @@ body {
 }
 
 .username{
-  color: var(--dark);
+  color: var(--black);
+  font-weight: 900;
 }
 
 a {
@@ -138,7 +139,7 @@ h6 {
   font-family: var(--title_font);
   font-weight: 800;
   margin: 0;
-  margin-bottom: 6rem;
+  margin-bottom: 2rem;
 }
 
 .flex,
@@ -246,6 +247,8 @@ h6 {
 
 .divisions {
   position: relative;
+  /* background-color: var(--primary); */
+  background-color: #fef8e8;
 }
 
 .title_header {
@@ -313,6 +316,7 @@ h6 {
 
   .small {
     font-size: 1.1em;
+    /* margin-bottom: 1rem; */
   }
 
   .btn {
@@ -662,6 +666,7 @@ header {
   background-size: cover;
   background-position: right;
   background-attachment: fixed;
+  /* height: 100dvh; */
   color: var(--white);
 }
 
@@ -686,9 +691,10 @@ header article em {
         var(--gray) 80%,
         rgba(1, 1, 1, 0.4) 100%
       ),
-      url("../../assets/images/header.jpg");
+      url("../img/hero.jpg");
     background-size: cover;
     background-position: bottom;
+    /* height: 200rem; */
   }
 
   header article {
@@ -816,7 +822,7 @@ header article em {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--white);
+  background-color: #fef8e8;
   color: var(--dark);
   z-index: 1;
   height: 5rem;
