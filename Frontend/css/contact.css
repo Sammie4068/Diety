@@ -24,8 +24,6 @@ body,
 input,
 textarea {
   font-family: "Poppins", sans-serif;
-   backdrop-filter: blur(7px);
-  /* height: 100dvh; */
 }
 
 .container {
@@ -158,7 +156,6 @@ textarea.input {
   position: absolute;
   top: 0;
   left: 25px;
-  /* transform: translateY(-50%); */
   font-size: 0.8rem;
   padding: 0 0.4rem;
   color: transparent;

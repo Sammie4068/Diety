@@ -12,9 +12,7 @@ exports.getUsers = async (req, res) => {
 exports.login = async (req, res, next) => {
   try {
     const foundUser = await getUserByEmail(req.body.email);
-
     const { id, name, email, phone, bookmarks} = foundUser.rows[0]
-    console.log(id, name, email, phone, bookmarks)
     if (foundUser.rows.length === 0) {
       return res.json({ message: "Invalid" });
     }

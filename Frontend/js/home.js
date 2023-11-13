@@ -67,8 +67,6 @@ if (!tokenStr) {
     setTimeout(() => {
       localStorage.clear();
       location.reload();
-
-      // window.location.href = "index.html";
     }, 1000);
   });
 }

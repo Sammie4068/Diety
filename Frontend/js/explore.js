@@ -28,7 +28,6 @@ async function getRecipes(url, parentEle) {
   try {
     const res = await fetch(url);
     const data = await res.json();
-    // console.log(data);
     if (data.length === 0) {
       renderError(parentEle);
     }
@@ -199,12 +198,10 @@ async function showRecipe() {
 }
 
 window.addEventListener("hashchange", showRecipe);
-window.addEventListener("load", displayRecipes);
-window.addEventListener("load", showRecipe);
-// window.addEventListener("load", () => {
-//     const id = window.location.hash.slice(1);
-//   addBookmark(id);
-// } );
+window.addEventListener("load" , () => {
+  displayRecipes() 
+  showRecipe()
+})
 
 //fetching all recipes
 async function displayRecipes() {
@@ -320,9 +317,7 @@ function addBookmark(id) {
     bookmarked = true;
     localBmks.push(id);
   }
-  console.log(bookmarked);
-  console.log(localBmks);
-
+ 
   localStorage.setItem("bookmarks", JSON.stringify(localBmks));
  
   if (!localBmks.includes(id)) {
