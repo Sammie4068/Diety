@@ -6,8 +6,8 @@ exports.getUserByEmail = async (email) => {
 
 exports.addUsers = async (user) => {
     return db.query(
-        "INSERT INTO users (name,email,password) VALUES ($1,$2,$3) RETURNING *",
-        [user.name, user.email, user.hashedPassword]
+        "INSERT INTO users (name,email,password,bookmarks) VALUES ($1,$2,$3,$4) RETURNING *",
+        [user.name, user.email, user.hashedPassword, user.bookmarks]
       );
 }
 

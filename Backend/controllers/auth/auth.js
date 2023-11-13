@@ -52,6 +52,7 @@ exports.register = async (req, res, next) => {
         name: req.body.name,
         email: req.body.email,
         hashedPassword,
+        bookmarks: JSON.stringify([])
       };
       const result = await addUsers(user);
       res.json({ message: "success" });
