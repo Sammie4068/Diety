@@ -6,6 +6,7 @@ const {
   getRecipesByID,
   getFilteredNameMeal,
   updateUserProfile,
+  addBookmark,
 } = require("./users/user");
 const { addMealRecipes } = require("./admin/admin")
 
@@ -21,4 +22,5 @@ module.exports = {
   addMealRecipes,
   getFilteredNameMeal,
   updateUserProfile,
+  addBookmark,
 };

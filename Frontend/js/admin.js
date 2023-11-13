@@ -59,11 +59,7 @@ async function postData(data) {
       },
       body: JSON.stringify(data),
     });
-    const bodydata = await res.json();
-    console.log(bodydata);
-    // if(bodydata.message == "Success"){
-
-    // }
+    await res.json();
   } catch (err) {
     console.error(`Error: ${err}`);
   }
@@ -97,7 +93,7 @@ uploadBtn.addEventListener("click", (e) => {
     timer: recipeTime.value,
     publisher: recipePublisher.value,
   };
-    postData(recipe);
+  postData(recipe);
 });
 
 // Adding ingredients input

@@ -59,3 +59,46 @@ async function save() {
     console.error(`Error: ${err}`);
   }
 }
+
+// display bookmarks
+const bookmarks = document.getElementById("bookmarks")
+
+   const localBmks = JSON.parse(localStorage.getItem("bookmarks"));
+
+async function getRecipes(url, parentEle) {
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    // console.log(data);
+    if (data.length === 0) {
+      renderError(parentEle);
+    }
+
+    //  Preview
+    parentEle.innerHTML = "";
+    setTimeout(() => {
+      data.map((bodydata) => {
+        let markup = `<li class="preview">
+              <a class="preview__link preview__link--active" href="#${bodydata.id}">
+              <figure class="preview__fig">
+                  <img src="./img/${bodydata.image}" alt="${bodydata.name}" />
+              </figure>
+              <div class="preview__data">
+                  <h4 class="preview__title">${bodydata.name}</h4>
+                  <p class="preview__publisher">${bodydata.publisher}</p>
+              </div>
+              </a>
+          </li>`;
+        parentEle.insertAdjacentHTML("afterbegin", markup);
+      });
+    }, 1000);
+  } catch (err) {
+    console.error(`Error: ${err}`);
+  }
+}
+
+const baseURL = "http://localhost:3000/api/v1/";
+
+ localBmks.forEach((bm) => {
+   getRecipes(`http://localhost:3000/api/v1/recipes/id/${bm}`, bookmarks);
+ });

@@ -14,7 +14,7 @@ exports.login = async (req, res, next) => {
     const foundUser = await getUserByEmail(req.body.email);
 
     const { id, name, email, phone, bookmarks} = foundUser.rows[0]
-    console.log(id, name, email, phone)
+    console.log(id, name, email, phone, bookmarks)
     if (foundUser.rows.length === 0) {
       return res.json({ message: "Invalid" });
     }
@@ -29,7 +29,15 @@ exports.login = async (req, res, next) => {
       expiresIn: 60 * 60,
     });
 
-    return res.json({ token, message: "logged", id, name, email, phone, bookmarks});
+    return res.json({
+      token,
+      message: "logged",
+      id,
+      name,
+      email,
+      phone,
+      bookmarks,
+    });
   } catch (err) {
     return next(err);
   }

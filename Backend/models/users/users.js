@@ -30,3 +30,7 @@ exports.addBookmark = async (recipeID) => {
 exports.updateUser = async (name, email, phone, id) => {
     return db.query("UPDATE users SET name = $1, email = $2, phone = $3 WHERE id = $4", [name, email, phone, id])
 }
+
+exports.updateBookmark = async (bookmark, id) => {
+    return db.query("UPDATE users SET bookmarks = $1 WHERE id = $2", [bookmark, id])
+}

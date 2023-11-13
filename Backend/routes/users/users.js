@@ -7,6 +7,7 @@ const {
   getRecipesByID,
   getFilteredNameMeal,
   updateUserProfile,
+  addBookmark,
 } = require("../../controllers/index");
 
 router.get("/recipes", getRecipes)
@@ -15,5 +16,6 @@ router.get("/recipes/name/:name", getMealName)
 router.get("/recipes/id/:id", getRecipesByID)
 router.get("/recipes/:name/:category", getFilteredNameMeal);
 router.post("/user", updateUserProfile);
+router.post("/user/bookmark", addBookmark);
 
 module.exports = router

@@ -116,7 +116,7 @@ async function postData(url, data) {
     });
 
     const bodydata = await res.json();
-    if (bodydata.message == "Success") {
+    if (bodydata.message == "success") {
       signupMsg.textContent = "Registration Successful";
       signupMsg.style.color = "green";
       username.value = "";
@@ -126,7 +126,7 @@ async function postData(url, data) {
       setTimeout(() => {
         signupMsg.textContent = "";
         container.classList.remove("sign-up-mode");
-      }, 2000);
+      }, 1000);
     }
     if (bodydata.message == "Already Exists") {
       signupMsg.textContent = "Email Already Exist";

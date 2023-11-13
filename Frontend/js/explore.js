@@ -16,25 +16,25 @@ search.addEventListener("submit", (e) => {
   getRecipes(
     `${baseURL}recipes/name/${searchTerm
       .toLowerCase()
-      .replace(searchTerm.charAt(0), searchTerm.charAt(0).toUpperCase())}`
+      .replace(searchTerm.charAt(0), searchTerm.charAt(0).toUpperCase())}`,
+    results
   );
 });
 
 // Get recipes
 const baseURL = "http://localhost:3000/api/v1/";
 
-async function getRecipes(url) {
+async function getRecipes(url, parentEle) {
   try {
     const res = await fetch(url);
     const data = await res.json();
     // console.log(data);
-    renderSpinner(results);
     if (data.length === 0) {
-      renderError(results);
+      renderError(parentEle);
     }
 
     //  Preview
-    results.innerHTML = "";
+    parentEle.innerHTML = "";
     setTimeout(() => {
       data.map((bodydata) => {
         let markup = `<li class="preview">
@@ -48,7 +48,7 @@ async function getRecipes(url) {
               </div>
               </a>
           </li>`;
-        results.insertAdjacentHTML("afterbegin", markup);
+        parentEle.insertAdjacentHTML("afterbegin", markup);
       });
     }, 1000);
   } catch (err) {
@@ -122,9 +122,11 @@ async function showRecipe() {
         <use href="./img/icons.svg#icon-cart"></use>
       </svg>
     </button>
-    <button class="btn--round">
-      <svg class="">
-        <use href="./img/icons.svg#icon-bookmark-fill"></use>
+    <button class="btn--round" onclick="addBookmark(${id})">
+      <svg class="bookmarkBtn">
+        <use href="./img/icons.svg#icon-bookmark${
+          localStorage.getItem("bookmarks").includes(id) ? `-fill` : ``
+        }"></use>
       </svg>
     </button>
   </div>
@@ -183,9 +185,14 @@ async function showRecipe() {
     </button>
     </div>
   </div>`;
-
     recipeContainer.innerHTML = "";
     recipeContainer.insertAdjacentHTML("afterbegin", markup);
+
+     const localBmks = JSON.parse(localStorage.getItem("bookmarks"));
+     const bookmarkList = document.querySelector(".bookmarks__list");
+    localBmks.forEach((bm) => {
+      getRecipes(`http://localhost:3000/api/v1/recipes/id/${bm}`, bookmarkList);
+    });
   } catch (err) {
     console.error(`Error: ${err}`);
   }
@@ -194,6 +201,10 @@ async function showRecipe() {
 window.addEventListener("hashchange", showRecipe);
 window.addEventListener("load", displayRecipes);
 window.addEventListener("load", showRecipe);
+// window.addEventListener("load", () => {
+//     const id = window.location.hash.slice(1);
+//   addBookmark(id);
+// } );
 
 //fetching all recipes
 async function displayRecipes() {
@@ -245,7 +256,7 @@ filterList.addEventListener("click", function (event) {
     let filtered = filterInput.value;
     const searchTerm = searchInput.value;
     if (!searchTerm && filtered) {
-      getRecipes(`${baseURL}recipes/category/${filtered}`);
+      getRecipes(`${baseURL}recipes/category/${filtered}`, results);
     }
 
     getRecipes(
@@ -254,7 +265,8 @@ filterList.addEventListener("click", function (event) {
         .replace(
           searchTerm.charAt(0),
           searchTerm.charAt(0).toUpperCase()
-        )}/${filtered}`
+        )}/${filtered}`,
+      results
     );
   }
 });
@@ -275,7 +287,6 @@ async function recipeModal(id) {
   const data = await response.json();
 
   const instructionsArray = data[0].instructions;
-  console.log(instructionsArray);
   for (let i = 0; i < instructionsArray.length; i++) {
     div.insertAdjacentHTML(
       "beforeend",
@@ -295,5 +306,32 @@ function closeModal() {
   modal.innerHTML = "";
 }
 
-// Bookmarks
-const bookmark = document.querySelector("")
+let bookmarked;
+
+function addBookmark(id) {
+   const localBmks = JSON.parse(localStorage.getItem("bookmarks"));
+  const bookmarkBtn = document.querySelector(".bookmarkBtn");
+  const bookmarkList = document.querySelector(".bookmarks__list");
+  if (localBmks.includes(id)) {
+    bookmarked = false;
+    const i = localBmks.indexOf(id);
+    localBmks.splice(i, 1);
+  } else {
+    bookmarked = true;
+    localBmks.push(id);
+  }
+  console.log(bookmarked);
+  console.log(localBmks);
+
+  localStorage.setItem("bookmarks", JSON.stringify(localBmks));
+ 
+  if (!localBmks.includes(id)) {
+    bookmarkBtn.innerHTML = `<use href="./img/icons.svg#icon-bookmark"></use>`;
+  } else {
+    bookmarkBtn.innerHTML = `<use href="./img/icons.svg#icon-bookmark-fill"></use>`;
+  }
+
+  localBmks.forEach((bm) => {
+    getRecipes(`http://localhost:3000/api/v1/recipes/id/${bm}`, bookmarkList);
+  });
+}

@@ -47,7 +47,7 @@ const username = localStorage.getItem("username");
 const helloMsg = document.getElementById("helloMsg");
 const exploreBtn = document.querySelector(".explore_btn");
 const signoutBtn = document.querySelector(".signoutbtn");
-const profileBtn = document.querySelector(".profilebtn")
+const profileBtn = document.querySelector(".profilebtn");
 
 if (!tokenStr) {
   exploreBtn.innerHTML = "Sign in to Explore";
@@ -60,14 +60,41 @@ if (!tokenStr) {
   });
   helloMsg.innerHTML = `Welcome  <span class='username'>${username} 👋🏼</span>`;
 
-  profileBtn.classList.remove("hidden")
+  profileBtn.classList.remove("hidden");
   signoutBtn.classList.remove("hidden");
-  signoutBtn.addEventListener("click", logout);
+  signoutBtn.addEventListener("click", () => {
+    logout();
+    setTimeout(() => {
+      localStorage.clear();
+      location.reload();
+
+      // window.location.href = "index.html";
+    }, 1000);
+  });
 }
 
+const localBmks = JSON.parse(localStorage.getItem("bookmarks"));
+const localID = localStorage.getItem("id");
+
 function logout() {
-  // localStorage.removeItem("token");
-  // localStorage.removeItem("username");
-  localStorage.clear()
-  window.location.href = "index.html";
+  let data = {
+    bookmark: localBmks,
+    id: localID,
+  };
+  addBmk(data);
+}
+
+async function addBmk(data) {
+  try {
+    const res = fetch(`http://localhost:3000/api/v1/user/bookmark`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    await res.json();
+  } catch (err) {
+    console.error(err);
+  }
 }
