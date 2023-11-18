@@ -6,16 +6,18 @@ const secret = process.env.SECRET;
 
 exports.getUsers = async (req, res) => {
   const results = await getAllUsers();
-  res.json(results.rows);
+  res.json({number: results.rows.length, data: results.rows});
 };
 
 exports.login = async (req, res, next) => {
   try {
     const foundUser = await getUserByEmail(req.body.email);
-    const { id, name, email, phone, bookmarks} = foundUser.rows[0]
-    if (foundUser.rows.length === 0) {
+
+    if (foundUser.rows.length === 0 || !foundUser.rows[0].active) {
       return res.json({ message: "Invalid" });
     }
+
+    const { id, name, email, phone, bookmarks} = foundUser.rows[0]
     const hashedPassword = await bcrypt.compare(
       req.body.password,
       foundUser.rows[0].password

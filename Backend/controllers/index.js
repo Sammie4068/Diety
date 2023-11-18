@@ -8,7 +8,13 @@ const {
   updateUserProfile,
   addBookmark,
 } = require("./users/user");
-const { addMealRecipes } = require("./admin/admin")
+const {
+  addMealRecipes,
+  updateActive,
+  getMealByname,
+  deleteMeals,
+  updateRecipe,
+} = require("./admin/admin");
 
 module.exports = {
   login,
@@ -23,4 +29,8 @@ module.exports = {
   getFilteredNameMeal,
   updateUserProfile,
   addBookmark,
+  updateActive,
+  getMealByname,
+  deleteMeals,
+  updateRecipe,
 };

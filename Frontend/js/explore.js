@@ -28,9 +28,9 @@ async function getRecipes(url, parentEle) {
   try {
     const res = await fetch(url);
     const data = await res.json();
-    if (data.length === 0) {
-      renderError(parentEle);
-    }
+    if (data.length === 0) renderError(parentEle);
+
+    // renderSpinner(parentEle)
 
     //  Preview
     parentEle.innerHTML = "";
@@ -39,7 +39,7 @@ async function getRecipes(url, parentEle) {
         let markup = `<li class="preview">
               <a class="preview__link preview__link--active" href="#${bodydata.id}">
               <figure class="preview__fig">
-                  <img src="./img/${bodydata.image}" alt="${bodydata.name}" />
+                  <img src="${bodydata.image}" alt="${bodydata.name}" />
               </figure>
               <div class="preview__data">
                   <h4 class="preview__title">${bodydata.name}</h4>
@@ -68,6 +68,7 @@ const renderSpinner = function (parentEle) {
     const spinner = document.querySelector(".spinner");
     setTimeout(() => {
       spinner.style.display = "none";
+      parentEle.innerHTML = ``;
     }, 1500);
   } else {
     return;
@@ -97,10 +98,9 @@ async function showRecipe() {
     const res = await fetch(`http://localhost:3000/api/v1/recipes/id/${id}`);
     const data = await res.json();
 
+    console.log(data[0]);
     const markup = `<figure class="recipe__fig">
-    <img src="./img/${data[0].image}" alt="${
-      data[0].name
-    }" class="recipe__img" />
+    <img src="${data[0].image}" alt="${data[0].name}" class="recipe__img" />
     <h1 class="recipe__title">
       <span>${data[0].name}</span>
     </h1>
@@ -187,8 +187,8 @@ async function showRecipe() {
     recipeContainer.innerHTML = "";
     recipeContainer.insertAdjacentHTML("afterbegin", markup);
 
-     const localBmks = JSON.parse(localStorage.getItem("bookmarks"));
-     const bookmarkList = document.querySelector(".bookmarks__list");
+    const localBmks = JSON.parse(localStorage.getItem("bookmarks"));
+    const bookmarkList = document.querySelector(".bookmarks__list");
     localBmks.forEach((bm) => {
       getRecipes(`http://localhost:3000/api/v1/recipes/id/${bm}`, bookmarkList);
     });
@@ -198,10 +198,8 @@ async function showRecipe() {
 }
 
 window.addEventListener("hashchange", showRecipe);
-window.addEventListener("load" , () => {
-  displayRecipes() 
-  showRecipe()
-})
+window.addEventListener("load", showRecipe)
+window.addEventListener("load", displayRecipes)
 
 //fetching all recipes
 async function displayRecipes() {
@@ -209,11 +207,11 @@ async function displayRecipes() {
     const res = await fetch(`http://localhost:3000/api/v1/recipes`);
     const data = await res.json();
 
-    data.map((bodydata) => {
+    data.data.map((bodydata) => {
       let markup = `<li class="preview">
               <a class="preview__link preview__link--active" href="#${bodydata.id}">
               <figure class="preview__fig">
-                  <img src="./img/${bodydata.image}" alt="${bodydata.name}" />
+                  <img src="${bodydata.image}" alt="${bodydata.name}" />
               </figure>
               <div class="preview__data">
                   <h4 class="preview__title">${bodydata.name}</h4>
@@ -232,7 +230,7 @@ async function displayRecipes() {
 const filterInput = document.querySelector(".filter");
 const filterList = document.getElementById("filter-dropdown");
 
-filterInput.addEventListener("mouseover", function () {
+filterInput.addEventListener("click", function () {
   if (filterList.style.display == "block") {
     filterList.style.display = "none";
   } else {
@@ -306,7 +304,7 @@ function closeModal() {
 let bookmarked;
 
 function addBookmark(id) {
-   const localBmks = JSON.parse(localStorage.getItem("bookmarks"));
+  const localBmks = JSON.parse(localStorage.getItem("bookmarks"));
   const bookmarkBtn = document.querySelector(".bookmarkBtn");
   const bookmarkList = document.querySelector(".bookmarks__list");
   if (localBmks.includes(id)) {
@@ -317,16 +315,17 @@ function addBookmark(id) {
     bookmarked = true;
     localBmks.push(id);
   }
- 
+
   localStorage.setItem("bookmarks", JSON.stringify(localBmks));
- 
+
   if (!localBmks.includes(id)) {
     bookmarkBtn.innerHTML = `<use href="./img/icons.svg#icon-bookmark"></use>`;
   } else {
     bookmarkBtn.innerHTML = `<use href="./img/icons.svg#icon-bookmark-fill"></use>`;
   }
-
+  
   localBmks.forEach((bm) => {
+    console.log(bm)
     getRecipes(`http://localhost:3000/api/v1/recipes/id/${bm}`, bookmarkList);
   });
 }

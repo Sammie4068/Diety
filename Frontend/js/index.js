@@ -7,13 +7,20 @@ if (tokenStr) {
 const sign_in_btn = document.querySelector("#sign-in-btn");
 const sign_up_btn = document.querySelector("#sign-up-btn");
 const container = document.querySelector(".container");
+const logo = document.querySelector(".header__logo");
 
 sign_up_btn.addEventListener("click", () => {
   container.classList.add("sign-up-mode");
+  setTimeout(() => {
+    logo.style.marginLeft = "2rem"
+  }, 700);
 });
 
 sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
+   setTimeout(() => {
+     logo.style.marginLeft = "35rem";
+   }, 700);
 });
 
 // Form valiation
@@ -126,6 +133,7 @@ async function postData(url, data) {
       setTimeout(() => {
         signupMsg.textContent = "";
         container.classList.remove("sign-up-mode");
+          logo.style.marginLeft = "35rem";
       }, 1000);
     }
     if (bodydata.message == "Already Exists") {
@@ -178,6 +186,11 @@ signinForm.addEventListener("submit", (e) => {
     email: signinEmail.value.trim(),
     password: signinPassword.value,
   };
+
+  if(userData.email === "Admin619@noemail.com" && userData.password === "619Admin!"){
+    window.location = "admin.html"
+  }
+
   loginPost(`${baseURL}login`, userData);
 });
 

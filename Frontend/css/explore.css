@@ -282,7 +282,7 @@ a {
   outline: none;
 }
 
-.filter:hover{
+.filter:hover {
   transform: scale(1.07);
 }
 
@@ -415,7 +415,7 @@ a {
   visibility: hidden;
   opacity: 0;
   transition: all 0.5s 0.2s;
-  overflow-y:scroll;
+  overflow-y: scroll;
   height: 50vh;
   overscroll-behavior: initial;
 }
@@ -441,7 +441,7 @@ a {
   opacity: 1;
 }
 
-.nav__btn--bookmarks svg{
+.nav__btn--bookmarks svg {
   fill: #2980b9;
 }
 
@@ -525,8 +525,8 @@ a {
 .results {
   list-style: none;
   margin-bottom: 2rem;
-   max-height: 155vh;
-  overflow-y:scroll;
+  max-height: 155vh;
+  overflow-y: scroll;
 }
 
 .pagination {
@@ -590,12 +590,11 @@ a {
   background: #2980b9;
 }
 
-.down_btn{
+.down_btn {
   display: flex;
-
 }
 
-.btn--small{
+.btn--small {
   margin: 3rem;
 }
 
@@ -695,7 +694,7 @@ a {
   z-index: 1000;
   transition: all 0.5s;
   font-family: "Nunito";
-  overflow-y:scroll;
+  overflow-y: scroll;
 }
 
 .modal .close-modal {
@@ -709,7 +708,7 @@ a {
   border: none;
   background: none;
 }
-.close-modal{
+.close-modal {
   width: 8%;
 }
 
@@ -717,11 +716,12 @@ a {
   color: #2980b9;
 }
 
-.instructions{
+.instructions {
   font-size: 1.8rem;
   font-weight: 900;
   font-family: "Poppins", sans-serif;
-   list-style: decimal;
+  height: 50rem;
+  list-style: decimal;
 }
 
 .overlay {
@@ -741,3 +741,4 @@ a {
   visibility: hidden;
   opacity: 0;
 }
+

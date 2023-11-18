@@ -642,7 +642,8 @@ header {
       var(--gray) 50%,
       rgba(1, 1, 1, 0.1) 100%
     ),
-    url("../img/hero.jpg");
+    url("https://res.cloudinary.com/okorosamuel/image/upload/v1699983411/Diety/background-image_eym4vs.jpg");
+
   background-size: cover;
   background-position: right;
   background-attachment: fixed;
@@ -671,7 +672,7 @@ header article em {
         var(--gray) 80%,
         rgba(1, 1, 1, 0.4) 100%
       ),
-      url("../img/hero.jpg");
+      url("https://res.cloudinary.com/okorosamuel/image/upload/v1699983411/Diety/background-image_eym4vs.jpg");
     background-size: cover;
     background-position: bottom;
     /* height: 200rem; */
