@@ -27,7 +27,6 @@ html {
   --default_font: "Poppins", sans-serif;
 }
 
-
 ::-webkit-scrollbar {
   height: 12px;
   width: 4px;
@@ -59,14 +58,18 @@ body {
   cursor: pointer;
 }
 
-#helloMsg{
-   color: var(--white);
-  font-size: 24px;
-  font-weight: bold;
-  margin-left: 40rem;
+a{
+  text-decoration: none;
 }
 
-.username{
+#helloMsg {
+  color: var(--white);
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 40%;
+}
+
+.username {
   color: var(--black);
   font-weight: 900;
 }
@@ -237,6 +240,17 @@ h6 {
   width: 100%;
 }
 
+.btn-3d {
+  position: relative;
+  padding: 1px 20px;
+  color: #fff;
+  background-color: #0077cc;
+  border: none;
+  cursor: pointer;
+  left: 100%;
+  width: 50%;
+}
+
 .divisions {
   position: relative;
   background-color: #fef8e8;
@@ -281,7 +295,7 @@ h6 {
   color: var(--primary_dark);
 }
 
-.hidden{
+.hidden {
   display: none;
 }
 
@@ -556,45 +570,6 @@ footer .flex_content a:hover {
   position: relative;
 }
 
-.alert {
-  background-color: var(--dark);
-  border: 1px solid var(--lite);
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.alert .close {
-  position: absolute;
-  color: var(--lite);
-  right: 0.5rem;
-  top: 0.5rem;
-}
-
-.alert .close:hover {
-  color: var(--white);
-}
-
-.alert iconify-icon {
-  font-size: 2em;
-  margin-right: 20px;
-}
-
-.alert iconify-icon[icon="subway:error"] {
-  color: red;
-}
-
-.alert iconify-icon[icon="bx:error"] {
-  color: #d3a120;
-}
-
-.alert .title {
-  color: var(--white);
-}
-
-.alert p {
-  color: var(--lite);
-}
-
 @media (max-width: 520px) {
   .additional {
     max-width: 100%;
@@ -633,7 +608,6 @@ footer .flex_content a:hover {
   font-weight: 900;
 }
 
-
 header {
   width: 100%;
   background: linear-gradient(
@@ -647,17 +621,13 @@ header {
   background-size: cover;
   background-position: right;
   background-attachment: fixed;
-  /* height: 100dvh; */
+  height: 100dvh;
   color: var(--white);
 }
 
 header article {
   width: min(100%, 700px);
   padding: 10rem 2rem;
-}
-
-header article p {
-  color: var(--lite);
 }
 
 header article em {
@@ -898,7 +868,7 @@ header article em {
 .division_3 section {
   width: 100%;
   border-radius: 10px;
-  background-color: #fef8e8;
+  background-color: #add9f0;
   margin: auto;
   justify-content: space-between;
   box-shadow: rgba(1, 1, 1, 0.2) 3px 3px 6px 0px inset,
@@ -916,7 +886,16 @@ header article em {
 }
 
 .division_3 .btn {
+  background-color: #2980b9;
   display: block;
+  float: right;
+  width: 20%;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.division_3 .btn:hover{
+  transform: scale(1.07);
 }
 
 @media (max-width: 1020px) {

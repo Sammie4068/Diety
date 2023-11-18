@@ -152,7 +152,7 @@ body {
 #bookmark-items {
   list-style: none;
   padding: 0;
-  height: 15rem;
+  /* height: 15rem; */
   overflow-y: scroll;
 }
 
