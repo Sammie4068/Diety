@@ -1,0 +1,214 @@
+@import url("https://fonts.googleapis.com/css2?family=Agbalumo&family=Poppins:ital,wght@0,300;0,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: url(https://res.cloudinary.com/okorosamuel/image/upload/v1699871731/cld-sample-4.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100dvh;
+}
+
+header {
+  text-align: center;
+  background-color: #add9f0;
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+}
+
+.header__logo {
+  margin-left: 4rem;
+  font-size: 2rem;
+  font-weight: 1000;
+  color: #2980b9;
+  font-family: "agbalumo", poppins;
+  cursor: pointer;
+}
+
+.title {
+  display: flex;
+  margin: auto;
+  color: #2980b9;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.profile-info {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+  overflow-y: scroll;
+}
+
+label{
+    margin-left: 1rem;
+}
+
+input {
+  outline: none;
+  margin: 0.6rem;
+  width: 60%;
+  color: #666;
+}
+
+.name {
+  font-size: 2rem;
+  border: none;
+  border-bottom: 2px solid #333;
+}
+
+.email {
+  font-size: 1rem;
+  border: none;
+  border-bottom: 2px solid #333;
+}
+
+.phone {
+  font-size: 1rem;
+  border: none;
+  border-bottom: 2px solid #333;
+}
+
+.password {
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid #333;
+}
+
+h2 {
+  color: #333;
+}
+
+.button {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #2980b9;
+  transform: scale(1.07);
+}
+
+.hidden{
+    display: none;
+}
+
+#bookmarks{
+  list-style: none;
+  margin-bottom: 2rem;
+   max-height: 50vh;
+  overflow-y:scroll;
+}
+
+#bookmark__results{
+  height: inherit;
+  padding: 3rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.preview{
+ transform: scale(0.5);
+}
+
+.preview__link:link,
+.preview__link:visited {
+  display: flex;
+  transition: all 0.3s;
+  border-right: 1px solid #fff;
+  text-decoration: none;
+  background-color: #333;
+  border-bottom: 1px solid #2980b9;
+}
+
+.preview__link:hover {
+  background-color: #c7ced7;
+  transform: translateY(-2px);
+}
+.preview__link--active {
+  background-color: #70a7cd;
+}
+.preview__fig {
+  flex: 0 0 5.8rem;
+  border-radius: 50%;
+  overflow: hidden;
+  height: 5.8rem;
+  margin-right: 2rem;
+  position: relative;
+  backface-visibility: hidden;
+}
+.preview__fig::before {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #2980b9;
+  opacity: 0.4;
+}
+.preview__fig img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s;
+}
+.preview__data {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 2rem;
+  row-gap: 0.1rem;
+  align-items: center;
+}
+.preview__title {
+  grid-column: 1/-1;
+  font-size: 1.45rem;
+  color: #2980b9;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  max-width: 25rem;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.preview__publisher {
+  font-size: 1.15rem;
+  color: #818991;
+  text-transform: uppercase;
+  font-weight: 600;
+}
