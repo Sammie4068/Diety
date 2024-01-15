@@ -1,6 +1,6 @@
 const tokenStr = localStorage.getItem("token");
 if (tokenStr) {
-  window.location = "home.html";
+  window.location = "index.html";
 }
 
 // Animation
@@ -12,15 +12,15 @@ const logo = document.querySelector(".header__logo");
 sign_up_btn.addEventListener("click", () => {
   container.classList.add("sign-up-mode");
   setTimeout(() => {
-    logo.style.left = "2rem"
+    logo.style.left = "2rem";
   }, 700);
 });
 
 sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
-   setTimeout(() => {
-     logo.style.left = "45rem";
-   }, 700);
+  setTimeout(() => {
+    logo.style.left = "45rem";
+  }, 700);
 });
 
 // Form valiation
@@ -133,7 +133,7 @@ async function postData(url, data) {
       setTimeout(() => {
         signupMsg.textContent = "";
         container.classList.remove("sign-up-mode");
-          logo.style.marginLeft = "35rem";
+        logo.style.marginLeft = "35rem";
       }, 1000);
     }
     if (bodydata.message == "Already Exists") {
@@ -170,10 +170,10 @@ async function loginPost(url, data) {
       localStorage.setItem("id", bodydata.id);
       localStorage.setItem("token", bodydata.token);
       localStorage.setItem("username", bodydata.name);
-      localStorage.setItem("email", bodydata.email)
-      localStorage.setItem("phone", bodydata.phone)
-      localStorage.setItem("bookmarks", bodydata.bookmarks)
-      window.location = "home.html";
+      localStorage.setItem("email", bodydata.email);
+      localStorage.setItem("phone", bodydata.phone);
+      localStorage.setItem("bookmarks", bodydata.bookmarks);
+      window.location = "index.html";
     }
   } catch (err) {
     console.error(`Error: ${err}`);
@@ -187,8 +187,11 @@ signinForm.addEventListener("submit", (e) => {
     password: signinPassword.value,
   };
 
-  if(userData.email === "Admin619@noemail.com" && userData.password === "619Admin!"){
-    window.location = "admin.html"
+  if (
+    userData.email === "Admin619@noemail.com" &&
+    userData.password === "619Admin!"
+  ) {
+    window.location = "admin.html";
   }
 
   loginPost(`${baseURL}login`, userData);
@@ -200,7 +203,7 @@ const signupEyeIcon = document.getElementById("eyeIcon");
 const confirmEyeIcon = document.getElementById("confirmEyeIcon");
 
 function showpass(input, icon) {
-  if(input.value == "") return
+  if (input.value == "") return;
   if (input.type == "password") {
     input.type = "text";
     icon.innerHTML = `<i class="fas fa-eye-slash"></i>`;

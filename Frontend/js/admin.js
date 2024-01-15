@@ -46,7 +46,7 @@ function showNutritionist() {
 }
 
 function logout() {
-  window.location = "index.html";
+  window.location = "auth.html";
 }
 
 function hideAllContent() {
@@ -601,7 +601,8 @@ const time = document.getElementById("recipeTime");
 const recipeIng = document.getElementById("recipe-ingredients");
 const recipeInst = document.getElementById("recipe-instructions");
 
-uploadBtn.addEventListener("click", (e) => { const formData = new FormData();
+uploadBtn.addEventListener("click", (e) => {
+  const formData = new FormData();
   const ingredients = recipeIng.value.split(",");
   const steps = recipeInst.value.split(";");
 

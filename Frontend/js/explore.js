@@ -1,6 +1,6 @@
 const tokenStr = localStorage.getItem("token");
 if (!tokenStr) {
-  window.location = "index.html";
+  window.location = "auth.html";
 }
 
 const search = document.querySelector(".search");
@@ -97,7 +97,7 @@ async function showRecipe() {
     if (!id) return;
     const res = await fetch(`http://localhost:3000/api/v1/recipes/id/${id}`);
     const data = await res.json();
-    console.log(data)
+    console.log(data);
     const markup = `<figure class="recipe__fig">
     <img src="${data[0].image}" alt="${data[0].name}" class="recipe__img" />
     <h1 class="recipe__title">
@@ -192,8 +192,8 @@ async function showRecipe() {
 }
 
 window.addEventListener("hashchange", showRecipe);
-window.addEventListener("load", showRecipe)
-window.addEventListener("load", displayRecipes)
+window.addEventListener("load", showRecipe);
+window.addEventListener("load", displayRecipes);
 
 //fetching all recipes
 async function displayRecipes() {
@@ -317,7 +317,7 @@ function addBookmark(id) {
   } else {
     bookmarkBtn.innerHTML = `<use href="./img/icons.svg#icon-bookmark-fill"></use>`;
   }
-  
+
   localBmks.forEach((bm) => {
     getRecipes(`http://localhost:3000/api/v1/recipes/id/${bm}`, bookmarkList);
   });

@@ -52,7 +52,7 @@ const profileBtn = document.querySelector(".profilebtn");
 if (!tokenStr) {
   exploreBtn.innerHTML = "Sign in to Explore";
   exploreBtn.addEventListener("click", () => {
-    window.location = "index.html";
+    window.location = "auth.html";
   });
 } else {
   exploreBtn.addEventListener("click", () => {
