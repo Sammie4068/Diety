@@ -1,0 +1,58 @@
+POST http://localhost:3000/api/v1/register
+Content-Type: application/json
+
+{
+    "name": "jobe",
+    "email": "jobe@email.com",
+    "password": "nda10839"
+}
+
+###
+GET http://localhost:3000/api/v1/register
+
+###
+POST http://localhost:3000/api/v1/login
+Content-Type: application/json
+
+{
+    "email": "job@email.com",
+    "password": "nda10839"
+}
+
+###
+GET http://localhost:3000/api/v1/recipes
+
+###
+GET http://localhost:3000/api/v1/recipes/type/lunch
+
+###
+GET http://localhost:3000/api/v1/recipes/id/20
+
+###
+GET http://localhost:3000/api/v1/recipes/category/Diabetes
+###
+POST http://localhost:3000/api/v1/recipes/update
+Content-Type: application/json
+
+{
+    "id": "68",
+    "name": "garri",
+    "image": "/img/garri.jpg",
+    "type": "dinner",
+    "category": "cancer",
+    "ingredients": ["garri", "sugar", "groundnut"],
+    "instructions": ["pour garri in bowl", "put the sugar", "pour the water", " enjoy"],
+    "timer": "2 mins",
+    "publisher": "sapa bundle",
+}
+
+###
+POST http://localhost:3000/api/v1/active
+Content-Type: application/json
+
+{
+    "id": 15
+}
+
+###
+DELETE http://localhost:3000/api/v1/recipes/delete/69
