@@ -11,30 +11,28 @@
   </head>
   <body>
     <header>
-      <a href="home.html"><h4 class="header__logo">Diety</h4></a>
-      <h1 class="title">User Profile</h1>
+      <a href="index.html"><h4 class="header__logo">Diety</h4></a>
+      <!-- <h1 class="title">User Profile</h1> -->
     </header>
 
     <div class="container">
       <div class="profile">
-        <img src="https://res.cloudinary.com/okorosamuel/image/upload/v1699871731/cld-sample-4.jpg" alt="Profile Picture" />
+        <img
+          src="https://res.cloudinary.com/okorosamuel/image/upload/v1699871731/cld-sample-4.jpg"
+          alt="Profile Picture"
+        />
         <div class="profile-info">
           <span>
             <label>Name: </label>
-            <input class="name" type="text" value="John Doe" readonly />
+            <input class="name" type="text" readonly />
           </span>
           <span>
             <label>E-mail: </label>
-            <input
-              class="email"
-              type="text"
-              value="john.doe@example.com"
-              readonly
-            />
+            <input class="email" type="text" readonly />
           </span>
           <span>
             <label>Phone: </label>
-            <input class="phone" type="text" value="07034824815" readonly />
+            <input class="phone" type="text" readonly />
           </span>
         </div>
         <a href="#" class="button" id="edit__btn">Edit Profile</a>
@@ -42,12 +40,11 @@
       <hr />
       <div id="bookmark__results">
         <h2>Bookmarked Recipes</h2>
-        <ul id="bookmarks">
-        </ul>
+        <ul id="bookmarks"></ul>
       </div>
       <hr />
       <h2>Purchase history</h2>
-      <p>No Purchases yet</p>
+      <p>Coming soon...</p>
     </div>
     <script src="./js/user.js"></script>
   </body>

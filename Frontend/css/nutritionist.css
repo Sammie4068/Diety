@@ -1,0 +1,199 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+body, h1, h2, h3, p, ul, li, form {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(
+      to right,
+      #1e1e1d 10%,
+      rgba(1, 1, 1, 0.6) 50%,
+      rgba(1, 1, 1, 0.1) 100%
+    ),
+    url("https://res.cloudinary.com/okorosamuel/image/upload/v1699871731/cld-sample-4.jpg");
+}
+#header {
+  background-color: #444;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+header .logo h1 {
+  font-size: 1.5rem;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+}
+
+header nav ul li {
+  margin-right: 20px;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+#title {
+  opacity: 0;
+}
+
+.dashboard-content {
+  display: none;
+}
+
+.dashboard-container{
+  display: flex;
+  padding: 10px;
+  border-radius: 1px;
+  font-size: large;
+  text-align: center;
+}
+
+.dashboard-overview{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.dashboard-widget{
+  flex: 5;
+  padding: 80px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.dashboard-overview h3 {
+  display: flex;
+  justify-content: center;
+  border: 2px solid blue;
+}
+#total-patients,
+#total-active-appiontments,
+#total-completed-plans {
+  font-size: 3rem;
+  color: #e44d26;
+  display: flex;
+  justify-content: center;
+}
+
+.body {
+  display: flex;
+
+}
+.aside {
+  width: 240px;
+  background-color: #333;
+  height: 600px;
+  color: #fff;
+  padding: 25px;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  display: block;
+  transition: background-color 0.3s ease;
+  font-size: 1.2rem;
+  border: 2px solid red;
+}
+
+aside .logo h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+aside ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+aside ul li {
+  margin-bottom: 10px;
+}
+
+aside ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+main {
+  margin-left: 200px;
+  padding: 2rem;
+}
+
+section {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 20px;
+  width: 1100px;
+  height: 500px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+form label {
+  margin-bottom: 5px;
+}
+
+form input,
+form textarea {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  background-color: #333;
+  color: #fff;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 10px;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  aside {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  main {
+    margin-left: 0;
+  }
+}
+
+
+
+
+

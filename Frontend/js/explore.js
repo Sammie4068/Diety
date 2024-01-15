@@ -1,6 +1,6 @@
 const tokenStr = localStorage.getItem("token");
 if (!tokenStr) {
-  window.location = "index.html";
+  window.location = "auth.html";
 }
 
 const search = document.querySelector(".search");
@@ -97,8 +97,7 @@ async function showRecipe() {
     if (!id) return;
     const res = await fetch(`http://localhost:3000/api/v1/recipes/id/${id}`);
     const data = await res.json();
-
-    console.log(data[0]);
+    console.log(data);
     const markup = `<figure class="recipe__fig">
     <img src="${data[0].image}" alt="${data[0].name}" class="recipe__img" />
     <h1 class="recipe__title">
@@ -116,11 +115,6 @@ async function showRecipe() {
       }</span>
       <span class="recipe__info-text">minutes</span>
     </div>
-    <button class="btn--round">
-      <svg class="">
-        <use href="./img/icons.svg#icon-cart"></use>
-      </svg>
-    </button>
     <button class="btn--round" onclick="addBookmark(${id})">
       <svg class="bookmarkBtn">
         <use href="./img/icons.svg#icon-bookmark${
@@ -169,9 +163,9 @@ async function showRecipe() {
     <button
       class="btn--small"
     >
-      <span> Make Order </span> 
+      <span> Nutrition Facts </span> 
          <svg class="">
-        <use href="./img/icons.svg#icon-cart"></use>
+        <use href="./img/icons.svg#icon-instruction"></use>
       </svg>  
     </button>
     <button
@@ -198,8 +192,8 @@ async function showRecipe() {
 }
 
 window.addEventListener("hashchange", showRecipe);
-window.addEventListener("load", showRecipe)
-window.addEventListener("load", displayRecipes)
+window.addEventListener("load", showRecipe);
+window.addEventListener("load", displayRecipes);
 
 //fetching all recipes
 async function displayRecipes() {
@@ -323,9 +317,8 @@ function addBookmark(id) {
   } else {
     bookmarkBtn.innerHTML = `<use href="./img/icons.svg#icon-bookmark-fill"></use>`;
   }
-  
+
   localBmks.forEach((bm) => {
-    console.log(bm)
     getRecipes(`http://localhost:3000/api/v1/recipes/id/${bm}`, bookmarkList);
   });
 }

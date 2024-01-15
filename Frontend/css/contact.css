@@ -41,6 +41,7 @@ textarea {
   align-items: center;
   justify-content: center;
   height: 100dvh;
+  scale: 1.03;
 }
 
 .form {

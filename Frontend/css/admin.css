@@ -39,11 +39,12 @@ body {
 }
 
 .sidebar-item {
-  padding: 15px;
+  padding: 25px;
   text-decoration: none;
   color: #fff;
   display: block;
   transition: background-color 0.3s ease;
+  font-size: 1.3rem;
 }
 
 .sidebar-item i {
@@ -64,6 +65,7 @@ body {
   color: #ccc;
   display: block;
   transition: background-color 0.3s ease;
+  font-size: 20px;
 }
 
 .sub-menu a:hover,
@@ -80,10 +82,10 @@ body {
 }
 
 #content {
-  margin-left: 250px;
   padding: 20px;
   position: relative;
-  top: -5rem;
+  left: 20rem;
+  width: 50%;
 }
 
 .dashboard-content {
@@ -96,11 +98,13 @@ body {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
 }
 
-#recipe-management {
+#recipe-management,
+#user-management {
   padding: 20px;
+  position: relative;
+  top: -7rem;
 }
 
 #recipe-form-container {
@@ -108,17 +112,36 @@ body {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  width: 100%;
+  width: 50rem;
 }
 
-/* #recipe-form label, */
+#recipe-form select,
 #recipe-form textarea,
 #recipe-form input {
   display: block;
   margin-bottom: 15px;
   width: 100%;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  padding: 10px;
+  font-size: 20px;
+  outline: none;
+  border-radius: 8px;
+  border: 2px solid #333;
+}
+
+#recipe-form label {
+  font-size: 20px;
+}
+
+#recipe-form {
+  height: 30rem;
+  overflow-y: scroll;
+}
+
+.third textarea {
+  padding: 5px;
+  height: 100px;
 }
 
 .button-container {
@@ -148,11 +171,17 @@ body {
   width: 50%;
 }
 
-#recipe-items,
+#recipe-items {
+  list-style: none;
+  padding: 0;
+  height: 30rem;
+  overflow-y: scroll;
+}
+
 #bookmark-items {
   list-style: none;
   padding: 0;
-  height: 15rem;
+  height: 20rem;
   overflow-y: scroll;
 }
 
@@ -169,7 +198,7 @@ body {
 }
 
 #recipe-items li:hover,
-#bookmarl-items li:hover {
+#bookmark-items li:hover {
   transform: scale(1.01);
 }
 
@@ -184,11 +213,6 @@ body {
 
 #recipe-actions button:hover {
   background-color: #e0e0e0;
-}
-
-#user-management {
-  padding: 20px;
-  width: 100%;
 }
 
 #user-management h2,
@@ -206,12 +230,12 @@ body {
   width: 100%;
 }
 
-.form_sub_div{
+.form_sub_div {
   display: flex;
 }
 
 #user-form label,
-#user-form input{
+#user-form input {
   display: block;
   margin-bottom: 15px;
   box-sizing: border-box;
@@ -225,11 +249,8 @@ body {
   border: none;
   border-bottom: 2px solid #333;
   outline: none;
-  font-size: larger;
-}
-
-#user-form select {
-  border: 2px solid #333;
+  font-size: 20px;
+  width: 50%;
 }
 
 .button-container {
@@ -240,9 +261,11 @@ body {
 .button-container button {
   border: none;
   width: 10rem;
-  height: 1.7rem;
+  height: 2rem;
   cursor: pointer;
   border-radius: 8px;
+  background-color: #333;
+  color: #fff;
 }
 
 .button-container button:hover {
@@ -265,7 +288,7 @@ body {
   list-style: none;
   padding: 0;
   overflow-y: scroll;
-  height: 13rem;
+  height: 30rem;
 }
 
 #user-items li {
@@ -491,26 +514,27 @@ body {
   margin-bottom: 10px;
 }
 
-.deactivate {
-  background-color: #e44d26;
+.activeBtn {
+  position: relative;
+  left: 10rem;
   border: none;
-  width: 5rem;
-  height: 1.7rem;
+  width: 9rem;
+  height: 3rem;
   cursor: pointer;
   border-radius: 8px;
-}
-.activate {
-  background-color: green;
-  border: none;
-  width: 5rem;
-  height: 1.7rem;
-  cursor: pointer;
-  border-radius: 8px;
+  font-weight: 600;
+  color: white;
 }
 
-.activate:hover,
-.deactivate:hover {
+.activeBtn:hover {
   transform: scale(1.07);
+}
+
+.deactivate {
+  background-color: #e44d26;
+}
+.activate {
+  background-color: #0f520f;
 }
 
 #users {
@@ -525,37 +549,7 @@ body {
   transform: translateY(-50%) rotate(-180deg);
 }
 
-#recipe-form input {
-  border: 2px solid #333;
-  padding: 10px;
-  outline: none;
-  border-radius: 8px;
-}
 
-#recipe-form {
-  height: 18rem;
-  overflow-y: scroll;
-}
-
-/* .second {
-  display: grid;
-  grid-template-columns: repeat(1, 2fr);
-} */
-
-.second select {
-  border: 2px solid #333;
-  border-radius: 8px;
-  outline: none;
-  padding: 10px;
-}
-
-.third textarea {
-  border: 2px solid #333;
-  outline: none;
-  padding: 5px;
-  height: 100px;
-  border-radius: 8px;
-}
 
 .modal {
   position: fixed;
@@ -663,6 +657,6 @@ body {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  overflow-y: scroll;
   width: 90%;
+  height: 20rem;
 }

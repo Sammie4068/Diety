@@ -6,7 +6,8 @@ CREATE TABLE users (
     id serial PRIMARY KEY,
     name VARCHAR NOT NULL,
     email VARCHAR NOT NULL UNIQUE,
-    password VARCHAR
+    password VARCHAR NOT NULL,
+    active BOOLEAN DEFAULT true
 );
 
 -- creating recipe table
@@ -34,6 +35,27 @@ CREATE TABLE meals (
     publisher VARCHAR NOT NULL
 );
 
+CREATE TABLE nutritionist (
+    id serial PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    date_of_birth DATE,
+    email VARCHAR(255) UNIQUE,
+    mobile_number VARCHAR(15),
+    gender VARCHAR(10),
+    passport VARCHAR(20),
+    id_card VARCHAR(20),
+    id_number VARCHAR(20),
+    issued_authority VARCHAR(255),
+    issued_state VARCHAR(255),
+    issued_date DATE,
+    expiry_date DATE,
+    address_type VARCHAR(50),
+    nationality VARCHAR(50),
+    state VARCHAR(50),
+    district VARCHAR(50),
+    block_number VARCHAR(10),
+    ward_number VARCHAR(10)
+);
 -- inserting into recipe table
 INSERT INTO recipes (name, image, type, category, ingredients, description, timer, publisher) VALUES ('oatmeal', '/img/oatmeal.jpg', 'breakfast', 'diabetes', '1/2 cup of old-fashioned rolled oats (for one serving), 1 cup of milk (you can use water if you prefer, Optional sweeteners or flavorings: honey, maple syrup, brown sugar, cinnamon, vanilla extract, fresh fruits, nuts, or dried, fruits', 'Measure the Oats: Start by measuring out 1/2 cup of old-fashioned rolled oats. This amount is for one serving. If you are making oatmeal for multiple people, adjust the quantity accordingly.;Combine Oats and Liquid: In a saucepan, combine the oats and 1 cup of milk (or water) for every 1/2 cup of oats. use more liquid for thinner oatmeal or less for thicker oatmeal.;Cook the Oatmeal: Place the saucepan on the stove over medium heat.;Stir the oats and liquid frequently as they cook to prevent sticking or burning.;Oatmeal is ready when it thickens to your liking, typically within 5-10 minutes. You can cook it longer for a creamier consistency or shorter for a thicker one.;Sweeten and Flavor: Once the oatmeal is cooked to your desired consistency, you can add sweeteners and flavorings to taste. Common options include honey, maple syrup, brown sugar, cinnamon, a dash of vanilla extract, fresh fruits (e.g., sliced bananas, berries), nuts (e.g., almonds, walnuts), or dried fruits (e.g., raisins,cranberries).;Serve: Pour the oatmeal into a bowl and add your chosen toppings. You can get creative with the toppings to suit your preferences.;Enjoy: Your oatmeal is now ready to be enjoyed. Be careful as it will be hot, so let it cool a bit before eating.', '30 mins', 'Healthy Living');
 

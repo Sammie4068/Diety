@@ -52,11 +52,11 @@ const profileBtn = document.querySelector(".profilebtn");
 if (!tokenStr) {
   exploreBtn.innerHTML = "Sign in to Explore";
   exploreBtn.addEventListener("click", () => {
-    window.location = "index.html";
+    window.location = "auth.html";
   });
 } else {
   exploreBtn.addEventListener("click", () => {
-    window.location = "explore.html#22";
+    window.location = "explore.html#9";
   });
   helloMsg.innerHTML = `Welcome  <span class='username'>${username} 👋🏼</span>`;
 

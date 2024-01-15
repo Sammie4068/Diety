@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/patient.css">
+</head>
+<body>
+
+    <header class="header">
+        <nav class="nav-item">
+            <a href="index.html"><h4 class="header__logo"> Diety </h4></a>
+      <a href="javascript:void(0)" class="ham" onclick="closer()">
+      </a>
+        <nav class="nav-menu">
+           <ul class="nav-list">
+               <li class="nav-item"><a class='nav-link' href='/home'>home</a></li>
+               <li class="nav-item"><a class='nav-link' href='/about'>about</a></li>
+               <li class="nav-item drop-item"><a href="" class="nav-link"></a></li>
+
+                 <!-- --content-->
+                 <ul class="drop-menu">
+                    <li class="nav-item"><a class='nav-link' href='/department'>nutritionist</a></li>
+                 </ul>
+               
+               <li class="nav-item"><a class='nav-link' href='/contact'>contact us</a></li>
+                <li class="nav-item drop-item"><a href="" class="nav-link"></a>
+                <!----label-->
+                <label for="doctor">nutritionist <span>+</span></label>
+                <!----input-->
+                <input type="radio" name="radioBtn" id="doctor">
+                 <!----content-->
+                 <ul class="drop-menu">
+                    <li class="nav-item"><a class='nav-link' href='/doctors'>all nutritionist</a></li>
+                 </ul>
+                </li>
+                <li class="nav-item"><a class='nav-link secondary-btn' href='/appointment'>appointment</a></li>
+            </ul>
+        </nav>
+        </div>  
+        </div>
+    </div>
+    <div class="header-background all-background ">
+        <!----------horiz-container------------>
+               <div class="header-background-overlay"></div>
+                            
+                    <div class=" all-header-desc">
+                        <h2 class="all-heading">appointment</h2>
+                        <p class="sub-heading"><span><a href='/home'>home  / </span></a><span><a href='/appointment'>appointment</a></span> </p>
+                    </div>
+                 </div>
+    </div>
+    </header>
+     <!-----patient information-------->
+     <section class="appointment">
+         <!---------------appointment heading-->
+         <p class="sub-heading">need a nutritionist ?</p>
+         <h3 class="section-heading">make an appointment now! </h3>
+         <h3 class="section-heading appointment-heading">patient information </h3>
+
+
+        <div class="appointment-wrapper">
+           <!----------apply form container---------->
+            <div class="appoint-form">
+                <form action="">
+                    <!------------name---------------->
+                   
+                    <div class="appoint-wrapper">
+                        <!---label-->
+                       <label for="name">patients name</label>
+                       <!---input-->
+                       <input type="text" name="name" id="name" placeholder=" name">
+                       
+                   </div>
+              
+                    <div class="appoint-wrapper">
+                        <!---label-->
+                       <label for="number">patients number</label>
+                       <!---input-->
+                       <input type="text" name="number" id="number" placeholder="number">
+                       
+                   </div>
+                   <!------------end of number---------------->
+
+                   <!------------date of birth number---------------->
+                   
+                   <div class="appoint-wrapper">
+                    <!---label-->
+                   <label for="date">date of birth</label>
+                   <!---input-->
+                   <input type="date" name="date" id="date">
+                   
+                   </div>
+                   <!------------end of date of birth---------------->
+
+                 
+                   <!------------gender---------------->
+                   <div class="appoint-wrapper">
+                       <!---label-->
+                   <label for="gender">gender</label>
+                    <div class="gender-container">
+                        <span class="single-gender">
+                            <input type="checkbox">
+                            <!--------check for male-------------->
+                            <label for="gender">male</label>
+                           <!--------end of check for male-------------->
+                        </span>
+
+                        <span class="single-gender">
+                             <!--------check for female-------------->
+                            <input type="checkbox">
+                            <label for="gender">female</label>
+                            <!--------end of check for male-------------->
+                        </span>
+                    </div>
+                   </div>
+                   <!------------end of gender---------------->
+                 </form>
+            </div>
+
+            <!----------apply form container---------->
+            <div class="appoint-form">
+                <form action="">
+                    <!------------email---------------->
+                   
+                    <div class="appoint-wrapper">
+                        <!---label-->
+                       <label for="email">email address</label>
+                       <!---input-->
+                       <input type="email" name="email" id="email" placeholder=" email">
+                       
+                   </div>
+                   <!------------end of email---------------->
+                    <!------------nationality---------------->
+                   
+                    <div class="appoint-wrapper">
+                        <!---label-->
+                       <label for="nationality">nationality</label>
+                       <!---input-->
+                       <input type="text" name="nationality" id="nationality" placeholder="nationality">
+                       
+                   </div>
+                   <!------------end of nationality---------------->
+
+                    <!------------country of residence---------------->
+                   
+                    <div class="appoint-wrapper">
+                        <!---label-->
+                       <label for="residence">country of residence</label>
+                       <!---input-->
+                       <input type="text" name="residence" id="residence" placeholder="resident country">
+                       
+                   </div>
+                   <!------------end of country of residence---------------->
+                  
+                   <!------------state of residence---------------->
+                   
+                   <div class="appoint-wrapper">
+                    <!---label-->
+                   <label for="residence">state of residence</label>
+                   <!---input-->
+                   <input type="text" name="residence" id="residence" placeholder="state">
+                   
+               </div>
+               <!------------end of country of residence---------------->
+              
+                   
+                 </form>
+            </div>
+        </div>
+     </section>
+      <!-----appointment information-------->
+      <section class="appointment">
+        <!---------------appointment heading-->
+         <h3 class="section-heading appointment-heading">appointment information </h3>
+
+
+       <div class="appointment-wrapper">
+          <!----------apply form container---------->
+           <div class="appoint-form">
+               <form action="">
+
+                    <!------------department---------------->
+                  
+                    <div class="appoint-wrapper">
+                        <!---label-->
+                       <label for="dept">speciality</label>
+                       <!---select-->
+                       <select name="dept" id="dept">
+                        <option value="department">speciality</option>
+                           <option value="cadiology">nutritionist</option>
+                           <!-- <option value="surgery">surgery</option>
+                           <option value="pediatric">pediatric</option>
+                           <option value="suggery">neurology</option>
+                           <option value="cadiology">cadiology</option>
+                           <option value="suggery">optician</option> -->
+                       </select>
+                    </div>
+                  
+                   <!------------doctor---------------->
+                  
+                   <div class="appoint-wrapper">
+                    <!---label-->
+                   <label for="dept">doctor</label>
+                   <!---select-->
+                   <select name="dept" id="dept">
+                    <option value="department">doctors name</option>
+                       <option value="cadiology">akachukwu mogbo</option>
+                       <option value="surgery">philip gray</option>
+                       <option value="pediatric">david mark</option>
+                       <option value="suggery">jane doe</option>
+                       <option value="cadiology">john doe</option>
+                       <option value="suggery">jammie fox</option>
+                   </select>
+                </div>
+                </form>
+           </div>
+
+           <!----------apply form container---------->
+           <div class="appoint-form">
+               <form action="">
+                   <!------------date of appointment---------------->
+                   
+                   <div class="appoint-wrapper">
+                    <!---label-->
+                   <label for="appointment">date of appointment</label>
+                   <!---input-->
+                   <input type="date" name="appointment" id="appointment">
+                   
+                   </div>
+                   <!------------end of date of appointment---------------->
+
+                   <!------------reason for consultation---------------->
+                   <div class="appoint-wrapper">
+                        <!---label-->
+                        <label for="message">reason for consultation</label>
+                        <!---textarea-->
+                        <textarea name="message" id="message" placeholder="your message"></textarea>
+                   </div>
+                   <input type="submit" value="submit" class="secondary-btn">
+                </form>
+           </div>
+       </div>
+    </section>
+     <!------plan section-------->
+    <section class="plan">
+        <p class="sub-heading">treatment plans</p>
+        <h3 class="section-heading">we have a variety of<br> health plans to meet your dietry needs and budget</h3>
+        <div class="content-wrapper plan-wrapper">
+            <!---single plan-->
+            <div class="single-content plan-content content-1">
+                <p class="plan-heading">classic</p>
+                <p>40 users</p>
+                <p class="plan-price">$ <span>5<small> /month</small></span></p>
+                <ul class="plan-details">
+                    <li class="plan-1">
+                        <a href=""></a>
+                        <p>primary care</p>
+                       
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>current diet</p>
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>dietry modifications</p>
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>weight management</p>
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>allergy management</p>
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>personalized nutrition plans</p>
+                    </li>
+                </ul>
+                <a href="" class="secondary-btn">get started now</a>
+            </div>
+            <!------end of single plan--->
+
+            <!---single plan-->
+            <div class="single-content plan-content content-2">
+                <p class="plan-heading">tradition</p>
+                <p>40 users</p>
+                <p class="plan-price">$ <span>10<small> /month</small></span></p>
+                <ul class="plan-details">
+                    <li class="plan-1">
+                        <a href=""></a>
+                        <p>primary care</p>
+                       
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>current diet</p>
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>dietry modifications</p>
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>weight management</p>
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>allergy management</p>
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>personalized nutrition plans</p>
+                    </li>
+                </ul>
+                <a href="" class="secondary-btn">get started now</a>
+            </div>
+            <!------end of single plan--->
+
+             <!---single plan-->
+            <div class="single-content plan-content content-3">
+                <p class="plan-heading">exclusive</p>
+                <p>40 users</p>
+                <p class="plan-price">$ <span>15<small> /month</small></span></p>
+                <ul class="plan-details">
+                    <li class="plan-1">
+                        <a href=""></a>
+                        <p>primary care</p>
+                       
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>current diet</p>
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>dietry modifications</p>
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>weight management</p>
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>allergy management</p>
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>personalized nutrition plans</p>
+                    </li>
+                </ul>
+                <a href="" class="secondary-btn">get started now</a>
+            </div>
+            <!------end of single plan--->
+              <!---single plan-->
+            <div class="single-content plan-content content">
+                <p class="plan-heading">complete</p>
+                <p>40 users</p>
+                <p class="plan-price">$ <span>25<small> /month</small></span></p>
+                <ul class="plan-details">
+                    <li class="plan-1">
+                        <a href=""></a>
+                        <p>primary care</p>
+                       
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>current diet</p>
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>dietry modifications</p>
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>weight management</p>
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>allergy management</p>
+                    </li>
+                    <li>
+                        <a href=""></a>
+                        <p>personalized nutrition plans</p>
+                    </li>
+                </ul>
+                <a href="" class="secondary-btn">get started now</a>
+            </div>
+            <!------end of single plan--->
+        </div>
+        
+    </section>
+    <footer class="flex" id="contact">
+    <section class="flex_content padding_2x">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-instagram"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+    </section>
+    <section class="flex_content">
+        <a href="#">Home</a>
+        <a href="#contact">Contact us</a>
+        <a href="#about">About us</a>
+        <a href="#">Cookie Policy</a>
+    </section>
+    <section class="flex_content padding_1x">
+        <p>© 2023 Diety || All rights reserved</p>
+    </section>
+</footer>
+<!----------javascript---------------->
+ <script src="./js/patient.js"></script>   
+</body>
+</html>

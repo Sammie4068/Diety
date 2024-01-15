@@ -39,8 +39,14 @@ function showSettings() {
   hideAllContent();
   document.getElementById("settings").style.display = "block";
 }
+
+function showNutritionist() {
+  hideAllContent();
+  document.getElementById("nutritionist-dashboard").style.display = "block";
+}
+
 function logout() {
-  window.location = "index.html";
+  window.location = "auth.html";
 }
 
 function hideAllContent() {
@@ -197,7 +203,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const bookmarks = document.getElementById("userBookmarks");
-const bookmarkItems = document.getElementById("bookmark-items")
+const bookmarkItems = document.getElementById("bookmark-items");
+
+const activeBtn = document.querySelector(".activeBtn");
 
 async function displayUsers() {
   try {
@@ -216,82 +224,102 @@ async function displayUsers() {
       userItems.innerHTML = ``;
       filteredusers.forEach((user) => {
         const listItem = document.createElement("li");
-        listItem.innerHTML = `<strong>${user.name}</strong> ${user.email}
-                             <span class="activeBtn"> ${user.active ? ` <button class="deactivate" onclick="active(${user.id})"> Deactivate </button>` : `<button class="activate" onclick="active(${user.id})"> Activate </button>`} </span>`;
-              [listItem].forEach((list) => {
+        listItem.innerHTML = `<strong>${user.name}</strong> ${user.email}`;
+        [listItem].forEach((list) => {
+          list.addEventListener("click", () => {
+            if (user.active) {
+              activeBtn.textContent = "Deactivate";
+              activeBtn.classList.add("deactivate");
+            } else {
+              activeBtn.textContent = "Activate";
+              activeBtn.classList.add("activate");
+            }
+            activeBtn.addEventListener("click", (e) => {
+              e.preventDefault();
+              active(user.id);
+            });
+            addTab(userManagement, userList, formContainer);
+            userInfo(user);
+            const bmArr = JSON.parse(user.bookmarks);
+            console.log(bmArr);
+            bmArr.forEach(async (bm) => {
+              console.log(typeof bm);
+              const res = await fetch(
+                `http://localhost:3000/api/v1/recipes/id/${bm}`
+              );
+              const data = await res.json();
+              const recipe = data[0];
+              if (data.length === 0) return;
+
+              const bookmarkLists = document.createElement("li");
+              bookmarkLists.innerHTML = `<strong>${recipe.name}</strong>`;
+              [bookmarkLists].forEach((list) => {
                 list.addEventListener("click", () => {
-                  addTab(userManagement, userList, formContainer);
-                  userInfo(user);
-                  const bmArr = JSON.parse(user.bookmarks);
-                  console.log(bmArr);
-                  bmArr.forEach(async (bm) => {
-                    console.log(typeof bm);
-                    const res = await fetch(
-                      `http://localhost:3000/api/v1/recipes/id/${bm}`
+                  // modal
+                  const div = document.createElement("div");
+                  div.classList.add("item");
+                  div.insertAdjacentHTML(
+                    "beforeend",
+                    `<button class="close-modal" onclick="closeModal()">&times;</button>`
+                  );
+
+                  for (let i = 0; i < [recipe].length; i++) {
+                    div.insertAdjacentHTML(
+                      "beforeend",
+                      `<img src="${recipe.image}">
+                        <h1 class="title">${recipe.name}</h1>
+					              <div class="flex-container">
+                            <button class="food_edit"             onclick="editRecipe('${recipe.id}')">             Edit </button>
+                            <button class="food_delete"             onclick="deleteRecipe('${recipe.id}')           ">Delete</button>
+				                </div>`
                     );
-                    const data = await res.json();
-                    const recipe = data[0];
-                    if (data.length === 0) return;
-
-                    const bookmarkLists = document.createElement("li");
-                    bookmarkLists.innerHTML = `<strong>${recipe.name}</strong>`;
-                    [bookmarkLists].forEach((list) => {
-                      list.addEventListener("click", () => {
-                        // modal
-                        const div = document.createElement("div");
-                        div.classList.add("item");
-                        div.insertAdjacentHTML(
-                          "beforeend",
-                          `<button class="close-modal" onclick="closeModal()">&times;</button>`
-                        );
-
-                        for (let i = 0; i < [recipe].length; i++) {
-                          div.insertAdjacentHTML(
-                            "beforeend",
-                            `
-					  <img src="${recipe.image}">
-            <h1 class="title">${recipe.name}</h1>
-					  <div class="flex-container">
-                <button class="food_edit" onclick="editRecipe('${recipe.id}')"> Edit </button>
-                <button class="food_delete" onclick="deleteRecipe('${recipe.id}')">Delete</button>
-				    </div>`
-                          );
-                        }
-                        modal.classList.remove("hidden");
-                        overlay.classList.remove("hidden");
-                        overlay.addEventListener("click", closeModal);
-                        modal.append(div);
-                      });
-                    });
-                    bookmarkItems.appendChild(bookmarkLists);
-                  });
+                  }
+                  modal.classList.remove("hidden");
+                  overlay.classList.remove("hidden");
+                  overlay.addEventListener("click", closeModal);
+                  modal.append(div);
                 });
               });
+              bookmarkItems.appendChild(bookmarkLists);
+            });
+          });
+        });
         userItems.appendChild(listItem);
       });
     });
 
     users.forEach((user) => {
       const listItem = document.createElement("li");
-      listItem.innerHTML = `<strong>${user.name}</strong> ${user.email}
-                             <span class="activeBtn"> ${
-                               user.active
-                                 ? ` <button class="deactivate" onclick="active(${user.id})"> Deactivate </button>`
-                                 : `<button class="activate" onclick="active(${user.id})"> Activate </button>`
-                             } </span>`;
+      listItem.innerHTML = `<strong>${user.name}</strong> ${user.email}`;
       [listItem].forEach((list) => {
         list.addEventListener("click", () => {
+          if (user.active) {
+            activeBtn.textContent = "Deactivate";
+            activeBtn.classList.add("deactivate");
+          } else {
+            activeBtn.textContent = "Activate";
+            activeBtn.classList.add("activate");
+          }
+          activeBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            active(user.id);
+          });
           addTab(userManagement, userList, formContainer);
           userInfo(user);
           const bmArr = JSON.parse(user.bookmarks);
-          console.log(bmArr);
+
+          if (!Array.isArray(bmArr) || bmArr.length === 0) {
+            bookmarkItems.innerHTML = `No Bookmarks yet 😟`;
+          } else {
+            bookmarkItems.innerHTML = ``;
+          }
+
           bmArr.forEach(async (bm) => {
-            console.log(typeof bm);
             const res = await fetch(
               `http://localhost:3000/api/v1/recipes/id/${bm}`
             );
             const data = await res.json();
-            const recipe = data[0]
+            const recipe = data[0];
             if (data.length === 0) return;
 
             const bookmarkLists = document.createElement("li");
@@ -335,20 +363,18 @@ async function displayUsers() {
   }
 }
 
-  const userName = document.getElementById("user-name")
-  const userEmail = document.getElementById("user-email")
-  const userPhone = document.getElementById("user-phone")
+const userName = document.getElementById("user-name");
+const userEmail = document.getElementById("user-email");
+const userPhone = document.getElementById("user-phone");
+const user_form = document.getElementById("user-form");
 // Function to add a new user
 async function userInfo(user) {
   userName.value = user.name;
-  userEmail.value = user.email
-  userPhone.value = user.phone
-  // console.log(userName, )
+  userEmail.value = user.email;
+  userPhone.value = user.phone;
 }
 
 async function active(id) {
-  const activeBtn = document.querySelector(".activeBtn");
-  activeBtn.innerHTML = ``;
   const res = await fetch(`http://localhost:3000/api/v1/active`, {
     method: "POST",
     headers: {
@@ -359,9 +385,13 @@ async function active(id) {
   const data = await res.json();
   console.log(data);
   if (data.message == "false") {
-    activeBtn.innerHTML = `<button class="activate" onclick="active(${id})"> Activate </button>`;
+    activeBtn.textContent = "Activate";
+    activeBtn.classList.remove("deactivate");
+    activeBtn.classList.add("activate");
   } else {
-    activeBtn.innerHTML = `<button class="deactivate" onclick="active(${id})"> Deactivate </button>`;
+    activeBtn.textContent = "Deactivate";
+    activeBtn.classList.remove("activate");
+    activeBtn.classList.add("deactivate");
   }
 }
 
@@ -527,15 +557,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const subs = document.querySelector(".sub-menu");
 const subs2 = document.querySelector(".sub-menu2");
+const recipeBar = document.getElementById("recipeBar");
 
 function showsubs(sub) {
-  if (sub.style.display == "none") {
-    sub.style.display = "block";
-  } else {
+  if (sub.style.display == "block") {
     sub.style.display = "none";
+  } else {
+    sub.style.display = "block";
   }
-  document.querySelector("#users").classList.toggle("rotate")
+  document.getElementById("users").classList.toggle("rotate");
 }
+
+recipeBar.addEventListener("click", (e) => {
+  e.preventDefault();
+  showsubs(subs2);
+});
 
 //ADDING RECIPES
 async function postData(data) {
@@ -568,7 +604,7 @@ const recipeInst = document.getElementById("recipe-instructions");
 uploadBtn.addEventListener("click", (e) => {
   const formData = new FormData();
   const ingredients = recipeIng.value.split(",");
-  const steps = recipeInst.value.split(",");
+  const steps = recipeInst.value.split(";");
 
   formData.append("name", recipeName.value);
   formData.append("image", recipeImage.files[0]);
