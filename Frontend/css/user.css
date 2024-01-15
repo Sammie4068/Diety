@@ -138,7 +138,7 @@ h2 {
   overflow-y: scroll;
 }
 
-#bookmarks li{
+#bookmarks li {
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -149,7 +149,7 @@ h2 {
   cursor: pointer;
 }
 
-#bookmarks li:hover{
+#bookmarks li:hover {
   transform: scale(1.01);
 }
 
@@ -165,8 +165,12 @@ h2 {
 
 #bookmarks li img {
   display: block;
-  width: 5%;
-  height: 5%;
+  width: 7%;
+  height: 7%;
   object-fit: cover;
   transition: all 0.3s;
 }
+/* 
+#bookmarks strong {
+  font-size: 1rem;
+} */

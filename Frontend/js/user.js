@@ -77,7 +77,7 @@ async function getRecipes(url, parentEle) {
     if (data.length === 0) return;
 
     const bookmarkLists = document.createElement("li");
-    bookmarkLists.innerHTML = `<img src="${data[0].image}"><strong>${data[0].name}</strong>  `;
+    bookmarkLists.innerHTML = `<strong>${data[0].name}</strong> <img src="${data[0].image}"> `;
     [bookmarkLists].forEach((list) => {
       list.addEventListener("click", () => {
         window.location = `explore.html#${data[0].id}`;

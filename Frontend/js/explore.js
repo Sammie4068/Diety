@@ -97,7 +97,7 @@ async function showRecipe() {
     if (!id) return;
     const res = await fetch(`http://localhost:3000/api/v1/recipes/id/${id}`);
     const data = await res.json();
-
+    console.log(data)
     const markup = `<figure class="recipe__fig">
     <img src="${data[0].image}" alt="${data[0].name}" class="recipe__img" />
     <h1 class="recipe__title">
@@ -115,11 +115,6 @@ async function showRecipe() {
       }</span>
       <span class="recipe__info-text">minutes</span>
     </div>
-    <button class="btn--round">
-      <svg class="">
-        <use href="./img/icons.svg#icon-cart"></use>
-      </svg>
-    </button>
     <button class="btn--round" onclick="addBookmark(${id})">
       <svg class="bookmarkBtn">
         <use href="./img/icons.svg#icon-bookmark${

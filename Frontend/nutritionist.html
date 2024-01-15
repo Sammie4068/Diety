@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nutritionist Dashboard</title>
+  <link rel="stylesheet" href="./css/nutritionist.css">
+</head>
+<body>
+  <div class="body">
+<div class="aside">
+  <div class="logo">
+    <h1>Nutritionist Dashboard</h1>
+  </div>
+  <ul>
+    <li><a href="#" onclick="toggleSection('dashboard-overview')">Dashboard Overview</a></li>
+    <li><a href="#" onclick="toggleSection('patient-management')">Patient Management</a></li>
+    <li><a href="#" onclick="toggleSection('nutrition-plans')">Nutrition Plans</a></li>
+    <li><a href="#" onclick="toggleSection('communication-section')">Chat</a></li>
+    <li><a href="#" onclick="toggleSection('appointment-scheduling')">Appointments</a></li>
+    <li><a href="#" onclick="toggleSection('progress-tracking')">Progress Tracking</a></li>
+    <li><a href="#" onclick="toggleSection('meal-logging')">Meal Logging</a></li>
+    <li><a href="#" onclick="toggleSection('logout')">Logout</a></li>
+
+  </div>
+<main>
+<section id="dashboard-overview">
+  <h2>Dashboard Overview</h2>
+  <div class="dashboard-container">
+    <div class="dashboard-widget">
+      <h3>Patients</h3>
+      <p>120</p>
+    </div>
+
+    <div class="dashboard-widget">
+      <h3>Active Appointments</h3>
+      <p>25</p>
+    </div>
+
+    <div class="dashboard-widget">
+      <h3>Completed Plans</h3>
+      <p>80</p>
+    </div>
+  </div>
+</section>
+
+<section id="patient-management">
+  <h2>Patient Management</h2>
+  <div class="patient-container">
+  <button id="add-patient-btn">Add Patient</button>
+  <ul id="patient-list">
+    <li>
+      <div class="patient-profile">
+        <h3>John Doe</h3>
+        <p>Age: 30</p>
+        <p>Goals: Weight loss</p>
+        <button class="view-profile-btn" onclick="viewPatientProfile('John Doe')">View Profile</button>
+      </div>
+      <div id="user-actions">
+        <input
+          type="text"
+          id="user-search"
+          placeholder="Search patients"
+        />
+      </div>
+    </div>
+    </li>
+  </ul>
+</section>
+
+<section id="nutrition-plans">
+  <h2>Nutrition Plans</h2>
+  <form id="create-nutrition-plan-form">
+    <label for="patient-name">Patient Name:</label>
+    <input type="text" id="patient-name" name="patient-name" required>
+
+    <label for="plan-details">Plan Details:</label>
+    <textarea id="plan-details" name="plan-details" rows="4" required></textarea>
+
+    <button type="submit" onclick="createNutritionPlan()">Create Plan</button>
+  </form>
+  <ul id="nutrition-plan-list">
+    <li>
+      <div class="nutrition-plan">
+        <h3>John Doe's Plan</h3>
+        <p>Details: Low-carb diet, 1500 calories/day</p>
+        <button class="view-plan-btn" onclick="viewNutritionPlan('John Doe')">View Plan</button>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section id="communication-section">
+  <h2>Communication Section</h2>
+  <div id="chat-messages">
+  </div>
+  <form id="chat-form">
+    <label for="message">Type your message:</label>
+    <input type="text" id="message" name="message" required>
+    <button type="submit" onclick="sendMessage()">Send</button>
+  </form>
+</section>
+
+<section id="appointment-scheduling">
+  <h2>Appointment Scheduling</h2>
+  <div id="calendar"></div>
+  <form id="appointment-form">
+    <label for="patient-name">Patient Name:</label>
+    <input type="text" id="patient-name" name="patient-name" required>
+
+    <label for="appointment-date">Appointment Date:</label>
+    <input type="datetime-local" id="appointment-date" name="appointment-date" required>
+
+    <button type="submit" onclick="scheduleAppointment()">Schedule Appointment</button>
+  </form>
+</section>
+
+<section id="progress-tracking">
+  <h2>Progress Tracking</h2>
+
+  <div style="width: 80%;">
+    <canvas id="progress-chart"></canvas>
+  </div>
+</section>
+
+<section id="meal-logging">
+  <h2>Meal Logging</h2>
+  <form id="meal-log-form">
+    <label for="meal-date">Meal Date:</label>
+    <input type="date" id="meal-date" name="meal-date" required>
+
+    <label for="meal-description">Meal Description:</label>
+    <textarea id="meal-description" name="meal-description" rows="4" required></textarea>
+
+    <label for="feedback">Feedback:</label>
+    <textarea id="feedback" name="feedback" rows="4"></textarea>
+
+    <button type="submit" onclick="logMeal()">Log Meal</button>
+  </form>
+  <ul id="meal-log-list">
+    <li>
+      <div class="meal-log">
+        <p>Date: January 15, 2023</p>
+        <p>Description: Grilled chicken salad</p>
+        <p>Feedback: Delicious!</p>
+      </div>
+    </li>
+  </ul>
+</section>
+</main>
+</div>
+<footer>
+  <p>Nutritionist Dashboard</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="./js/nutritionist.js"></script>
+</body>
+</html>
+
+
+
+
+

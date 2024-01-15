@@ -18,8 +18,8 @@ body {
 }
 .header__logo {
   position: relative;
-  bottom: 18rem;
-  right: 10rem;
+  bottom: 22rem;
+  right: 18rem;
   font-size: 2rem;
   font-weight: 1000;
   color: #2980b9;
@@ -41,6 +41,7 @@ a {
   margin: 0 15px;
   background-color: #add9f0;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  scale: 1.2;
 }
 .container header {
   position: relative;

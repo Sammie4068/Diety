@@ -25,6 +25,7 @@ exports.addMealRecipes = async (req, res, next) => {
       timer: req.body.timer,
       publisher: req.body.publisher,
     };
+    
     const result = await addRecipes(recipe);
     res.json({ message: "success" });
   } catch (err) {

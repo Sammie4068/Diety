@@ -39,6 +39,12 @@ function showSettings() {
   hideAllContent();
   document.getElementById("settings").style.display = "block";
 }
+
+function showNutritionist() {
+  hideAllContent();
+  document.getElementById("nutritionist-dashboard").style.display = "block";
+}
+
 function logout() {
   window.location = "index.html";
 }
@@ -199,6 +205,8 @@ document.addEventListener("DOMContentLoaded", function () {
 const bookmarks = document.getElementById("userBookmarks");
 const bookmarkItems = document.getElementById("bookmark-items");
 
+const activeBtn = document.querySelector(".activeBtn");
+
 async function displayUsers() {
   try {
     const res = await fetch(`http://localhost:3000/api/v1/register`);
@@ -216,14 +224,20 @@ async function displayUsers() {
       userItems.innerHTML = ``;
       filteredusers.forEach((user) => {
         const listItem = document.createElement("li");
-        listItem.innerHTML = `<strong>${user.name}</strong> ${user.email}
-                             <span class="activeBtn"> ${
-                               user.active
-                                 ? ` <button class="deactivate" onclick="active(${user.id})"> Deactivate </button>`
-                                 : `<button class="activate" onclick="active(${user.id})"> Activate </button>`
-                             } </span>`;
+        listItem.innerHTML = `<strong>${user.name}</strong> ${user.email}`;
         [listItem].forEach((list) => {
           list.addEventListener("click", () => {
+            if (user.active) {
+              activeBtn.textContent = "Deactivate";
+              activeBtn.classList.add("deactivate");
+            } else {
+              activeBtn.textContent = "Activate";
+              activeBtn.classList.add("activate");
+            }
+            activeBtn.addEventListener("click", (e) => {
+              e.preventDefault();
+              active(user.id);
+            });
             addTab(userManagement, userList, formContainer);
             userInfo(user);
             const bmArr = JSON.parse(user.bookmarks);
@@ -252,13 +266,12 @@ async function displayUsers() {
                   for (let i = 0; i < [recipe].length; i++) {
                     div.insertAdjacentHTML(
                       "beforeend",
-                      `
-					  <img src="${recipe.image}">
-            <h1 class="title">${recipe.name}</h1>
-					  <div class="flex-container">
-                <button class="food_edit" onclick="editRecipe('${recipe.id}')"> Edit </button>
-                <button class="food_delete" onclick="deleteRecipe('${recipe.id}')">Delete</button>
-				    </div>`
+                      `<img src="${recipe.image}">
+                        <h1 class="title">${recipe.name}</h1>
+					              <div class="flex-container">
+                            <button class="food_edit"             onclick="editRecipe('${recipe.id}')">             Edit </button>
+                            <button class="food_delete"             onclick="deleteRecipe('${recipe.id}')           ">Delete</button>
+				                </div>`
                     );
                   }
                   modal.classList.remove("hidden");
@@ -277,14 +290,20 @@ async function displayUsers() {
 
     users.forEach((user) => {
       const listItem = document.createElement("li");
-      listItem.innerHTML = `<strong>${user.name}</strong> ${user.email}
-                             <span class="activeBtn"> ${
-                               user.active
-                                 ? ` <button class="deactivate" onclick="active(${user.id})"> Deactivate </button>`
-                                 : `<button class="activate" onclick="active(${user.id})"> Activate </button>`
-                             } </span>`;
+      listItem.innerHTML = `<strong>${user.name}</strong> ${user.email}`;
       [listItem].forEach((list) => {
         list.addEventListener("click", () => {
+          if (user.active) {
+            activeBtn.textContent = "Deactivate";
+            activeBtn.classList.add("deactivate");
+          } else {
+            activeBtn.textContent = "Activate";
+            activeBtn.classList.add("activate");
+          }
+          activeBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            active(user.id);
+          });
           addTab(userManagement, userList, formContainer);
           userInfo(user);
           const bmArr = JSON.parse(user.bookmarks);
@@ -347,17 +366,15 @@ async function displayUsers() {
 const userName = document.getElementById("user-name");
 const userEmail = document.getElementById("user-email");
 const userPhone = document.getElementById("user-phone");
+const user_form = document.getElementById("user-form");
 // Function to add a new user
 async function userInfo(user) {
   userName.value = user.name;
   userEmail.value = user.email;
   userPhone.value = user.phone;
-  // console.log(userName, )
 }
 
 async function active(id) {
-  const activeBtn = document.querySelector(".activeBtn");
-  activeBtn.innerHTML = ``;
   const res = await fetch(`http://localhost:3000/api/v1/active`, {
     method: "POST",
     headers: {
@@ -368,9 +385,13 @@ async function active(id) {
   const data = await res.json();
   console.log(data);
   if (data.message == "false") {
-    activeBtn.innerHTML = `<button class="activate" onclick="active(${id})"> Activate </button>`;
+    activeBtn.textContent = "Activate";
+    activeBtn.classList.remove("deactivate");
+    activeBtn.classList.add("activate");
   } else {
-    activeBtn.innerHTML = `<button class="deactivate" onclick="active(${id})"> Deactivate </button>`;
+    activeBtn.textContent = "Deactivate";
+    activeBtn.classList.remove("activate");
+    activeBtn.classList.add("deactivate");
   }
 }
 
@@ -536,15 +557,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const subs = document.querySelector(".sub-menu");
 const subs2 = document.querySelector(".sub-menu2");
+const recipeBar = document.getElementById("recipeBar");
 
 function showsubs(sub) {
-  if (sub.style.display == "none") {
-    sub.style.display = "block";
-  } else {
+  if (sub.style.display == "block") {
     sub.style.display = "none";
+  } else {
+    sub.style.display = "block";
   }
-  document.querySelector("#users").classList.toggle("rotate");
+  document.getElementById("users").classList.toggle("rotate");
 }
+
+recipeBar.addEventListener("click", (e) => {
+  e.preventDefault();
+  showsubs(subs2);
+});
 
 //ADDING RECIPES
 async function postData(data) {
@@ -574,10 +601,9 @@ const time = document.getElementById("recipeTime");
 const recipeIng = document.getElementById("recipe-ingredients");
 const recipeInst = document.getElementById("recipe-instructions");
 
-uploadBtn.addEventListener("click", (e) => {
-  const formData = new FormData();
+uploadBtn.addEventListener("click", (e) => { const formData = new FormData();
   const ingredients = recipeIng.value.split(",");
-  const steps = recipeInst.value.split(",");
+  const steps = recipeInst.value.split(";");
 
   formData.append("name", recipeName.value);
   formData.append("image", recipeImage.files[0]);

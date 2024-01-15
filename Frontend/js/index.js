@@ -12,14 +12,14 @@ const logo = document.querySelector(".header__logo");
 sign_up_btn.addEventListener("click", () => {
   container.classList.add("sign-up-mode");
   setTimeout(() => {
-    logo.style.marginLeft = "2rem"
+    logo.style.left = "2rem"
   }, 700);
 });
 
 sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
    setTimeout(() => {
-     logo.style.marginLeft = "35rem";
+     logo.style.left = "45rem";
    }, 700);
 });
 

@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
-const { authRoute, recipeRoute, adminRoute } = require("./routes/index");
+const { authRoute, recipeRoute, adminRoute, nutritionistRoute } = require("./routes/index");
 
 app.use(express.json());
 app.use(cors());
@@ -11,7 +11,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/v1", cors(), authRoute);
 app.use("/api/v1", cors(), recipeRoute);
-app.use("/api/v1", cors(), adminRoute)
+app.use("/api/v1", cors(), adminRoute);
+app.use("/api/v1", cors(), nutritionistRoute);
 
 const port = process.env.PORT;
 

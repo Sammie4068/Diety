@@ -24,6 +24,7 @@ html {
   --primary_dark: #5995fd;
   --primary_lite: #04befe;
   --secondary_lite: #add9f0;
+  --orangey: #fef8e8;
   --default_font: "Poppins", sans-serif;
 }
 
@@ -58,15 +59,15 @@ body {
   cursor: pointer;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
 #helloMsg {
   color: var(--white);
-  font-size: 24px;
+  font-size: 200%;
   font-weight: bold;
-  margin-left: 40%;
+  margin-left: 50%;
 }
 
 .username {
@@ -133,8 +134,9 @@ h6 {
 .sub_title {
   font-family: var(--title_font);
   font-weight: 800;
-  margin: 0;
-  margin-bottom: 2rem;
+  margin: 2.6rem;
+  /* margin-bottom: 2rem; */
+  /* font-size: 200%; */
 }
 
 .flex,
@@ -215,7 +217,10 @@ h6 {
   position: relative;
   font-family: var(--default_font);
   font-weight: 400;
-  text-transform: uppercase;
+  text-transform: capitalize;
+  margin: 4rem;
+  font-size: 150%;
+  padding: 2rem;
 }
 
 .explore_btn:before {
@@ -224,10 +229,12 @@ h6 {
   background-color: rgba(255, 255, 255, 0.2);
   position: absolute;
   left: 0;
+  width: 40px;
   top: 50%;
   height: 40px;
   transition: 0.5s;
   transform: translate(0%, -50%);
+  padding: 2rem;
 }
 
 .explore_btn:after {
@@ -238,17 +245,6 @@ h6 {
 
 .explore_btn:hover:before {
   width: 100%;
-}
-
-.btn-3d {
-  position: relative;
-  padding: 1px 20px;
-  color: #fff;
-  background-color: #0077cc;
-  border: none;
-  cursor: pointer;
-  left: 100%;
-  width: 50%;
 }
 
 .divisions {
@@ -460,6 +456,7 @@ menu .dropdown {
   padding: 0.5rem 0;
   cursor: pointer;
   transition: 0.5s;
+  font-size: 120%;
 }
 
 menu .dropdown {
@@ -477,7 +474,7 @@ menu .dropdown_content {
 
 menu .links a:before,
 menu .links .dropdown dt:before {
-  font-family: "FontAwesome";
+  font-family: var(--default_font);
   margin-right: 5px;
   transition: 0.5s;
 }
@@ -606,6 +603,7 @@ footer .flex_content a:hover {
   box-shadow: 0px 6px 16px -6px rgba(1, 1, 1, 0.5);
   color: var(--white);
   font-weight: 900;
+  font-size: 150%;
 }
 
 header {
@@ -645,7 +643,7 @@ header article em {
       url("https://res.cloudinary.com/okorosamuel/image/upload/v1699983411/Diety/background-image_eym4vs.jpg");
     background-size: cover;
     background-position: bottom;
-    /* height: 200rem; */
+    background-attachment: fixed;
   }
 
   header article {
@@ -772,7 +770,7 @@ header article em {
   background-color: #fef8e8;
   color: var(--dark);
   z-index: 1;
-  height: 5rem;
+  /* height: 4rem; */
 }
 
 .division_2 .cards {
@@ -894,8 +892,12 @@ header article em {
   text-transform: uppercase;
 }
 
-.division_3 .btn:hover{
+.division_3 .btn:hover {
   transform: scale(1.07);
+}
+
+.division_3 article p {
+  font-size: 1.3rem;
 }
 
 @media (max-width: 1020px) {

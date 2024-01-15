@@ -23,7 +23,8 @@
             
           </li>
           <li>
-            <a href="#" class="sidebar-item" onclick="showsubs(subs2)"
+            <a href="#" class="sidebar-item"
+            id="recipeBar"
               ><i class="fas fa-utensils"></i> Recipe Management
               <span class="fas fa-caret-down" id="users"></span
             ></a>
@@ -45,7 +46,7 @@
             </ul>
           </li>
           <li>
-            <a href="#" class="sidebar-item" onclick="showCategoryManagement()"
+            <a href="#" class="sidebar-item" onclick="showNutritionist()"
               ><i class="fas fa-list-alt"></i> Nutritionists Management</a
             >
           </li>
@@ -99,15 +100,15 @@
 
           <!-- Add User Form -->
           <div id="user-form-container">
-            <h3>Add User</h3>
+            <h3>User Profile</h3>
             <form id="user-form">
               <div class="form_sub_div">
               <i class="fas fa-user"></i> <label for="user-name">  User Name:</label>
-              <input type="text" id="user-name" name="user-name" required />
+              <input type="text" id="user-name" name="user-name" readonly />
               </div>
               <div class="form_sub_div">
                 <i class="fas fa-envelope"></i> <label for="user-email"> </i>  Email:</label>
-              <input type="email" id="user-email" name="user-email" required />
+              <input type="email" id="user-email" name="user-email" readonly />
               </div>
               <div class="form_sub_div">
                   <i class="fas fa-phone"></i>  <label for="user-phone"> Phone:</label>
@@ -115,9 +116,11 @@
                 type="text"
                 id="user-phone"
                 name="user-phone"
-                required
+                readonly
               />
+              <button class="activeBtn"> Activate </button>
               </div>
+
             </form>
             <hr>
             <div id="userBookmarks">
@@ -185,7 +188,7 @@
 
               <div class="third">
                 <div class="ingredients">
-                  <p>Ingredients</p>
+                  <label>Ingredients (e.g: 1 cup of water, 2kg of Pasta...)</label>
                   <textarea
                     id="recipe-ingredients"
                     name="recipe-ingredients"
@@ -195,7 +198,7 @@
                 </div>
 
                 <div class="instructions">
-                  <p>Instructions</p>
+                  <label>Instructions (e.g: Boil a cup of water for 10 mins; Put Pasta into the water;...)</label>
                   <textarea
                     id="recipe-instructions"
                     name="recipe-instructions"
@@ -356,3 +359,4 @@
     <script src="./js/admin.js"></script>
   </body>
 </html>
+eeew
