@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Agbalumo&family=Poppins:ital,wght@0,300;0,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  align-items: center;
+  justify-content: center;
+  background: url(https://res.cloudinary.com/okorosamuel/image/upload/v1700290768/Diety/brooke-lark-08bOYnH_r_E-unsplash_smfqer.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(5px);
+  height: 100vh;
+}
+.header__logo {
+  position: relative;
+  bottom: 22rem;
+  right: 18rem;
+  font-size: 2rem;
+  font-weight: 1000;
+  color: #2980b9;
+  font-family: "agbalumo", poppins;
+  z-index: 11 !important;
+  cursor: pointer;
+}
+
+label {
+  font-weight: 600;
+  color: #666;
+}
+.box8{
+  box-shadow: 10px 10px 40px 5px #999;
+}
+.mx-t3{
+margin-top: -3rem;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 1.375rem 0.75rem !important;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.jumbotron {
+  padding: 5rem 1rem !important;
+}

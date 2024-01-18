@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diety Admin Dashboard</title>
+    <link rel="stylesheet" href="./css/admin.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="sidebar">
+        <div id="header">Admin Dashboard</div>
+        <ul class="sidebar-menu">
+          <li>
+            <a href="#" class="sidebar-item" onclick="showDashboard()"
+              ><i class="fas fa-tachometer-alt"></i> Dashboard</a
+            >
+          </li>
+          <li>
+            <a href="#" class="sidebar-item" onclick="listTab(userManagement,userList,formContainer)"
+              ><i class="fas fa-users"></i> User Management
+              </a>
+            
+          </li>
+          <li>
+            <a href="#" class="sidebar-item"
+            id="recipeBar"
+              ><i class="fas fa-utensils"></i> Recipe Management
+              <span class="fas fa-caret-down" id="users"></span
+            ></a>
+            <ul class="sub-menu2">
+              <li>
+                <a
+                  href="#"
+                  onclick="addTab(recipeManagement, recipeList, recipeForm)"
+                  >Add recipe</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  onclick="listTab(recipeManagement, recipeList, recipeForm)"
+                  >Recipes</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="sidebar-item" onclick="showNutritionist()"
+              ><i class="fas fa-list-alt"></i> Nutritionists Management</a
+            >
+          </li>
+          <li>
+            <a href="#" class="sidebar-item" onclick="showAnalytics()"
+              ><i class="fas fa-chart-bar"></i> Analytics</a
+            >
+          </li>
+          <li>
+            <a href="#" class="sidebar-item" onclick="showSettings()"
+              ><i class="fas fa-cog"></i> Settings</a
+            >
+          </li>
+          <li>
+            <a href="#" class="sidebar-item nutritionist" onclick="logout()"
+              ><i class="fas fa-power-off"></i> Log out
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div id="content">
+        <h1 id="title">Welcome to the Admin Dashboard</h1>
+
+        <div id="dashboard" class="dashboard-content">
+          <h2>Dashboard</h2>
+
+          <div id="dashboard-stats">
+            <div class="stat-box">
+              <h3>Users</h3>
+              <p id="total-users">0</p>
+            </div>
+            <div class="stat-box">
+              <h3>Recipes</h3>
+              <p id="total-recipes">0</p>
+            </div>
+            <div class="stat-box">
+              <h3>Nutritionists</h3>
+              <p id="total-categories">0</p>
+            </div>
+          </div>
+
+          <div id="recent-activity">
+            <h3>Recent Activity</h3>
+            <ul id="activity-list"></ul>
+          </div>
+        </div>
+
+        <div id="user-management" class="dashboard-content">
+          <h2>User Management</h2>
+
+          <!-- Add User Form -->
+          <div id="user-form-container">
+            <h3>User Profile</h3>
+            <form id="user-form">
+              <div class="form_sub_div">
+              <i class="fas fa-user"></i> <label for="user-name">  User Name:</label>
+              <input type="text" id="user-name" name="user-name" readonly />
+              </div>
+              <div class="form_sub_div">
+                <i class="fas fa-envelope"></i> <label for="user-email"> </i>  Email:</label>
+              <input type="email" id="user-email" name="user-email" readonly />
+              </div>
+              <div class="form_sub_div">
+                  <i class="fas fa-phone"></i>  <label for="user-phone"> Phone:</label>
+              <input
+                type="text"
+                id="user-phone"
+                name="user-phone"
+                readonly
+              />
+              <button class="activeBtn"> Activate </button>
+              </div>
+
+            </form>
+            <hr>
+            <div id="userBookmarks">
+              <h3> Bookmarks </h3>
+              <ul id="bookmark-items"></ul>
+            </div>
+          </div>
+
+          <!-- User List -->
+          <div id="user-list">
+            <h3>User List</h3>
+            <div id="user-actions">
+              <input
+                type="text"
+                id="user-search"
+                placeholder="Search users"
+              />
+            </div>
+            <ul id="user-items"></ul>
+          </div>
+        </div>
+        <div id="recipe-management" class="dashboard-content">
+          <h2>Recipe Management</h2>
+
+          <!-- Add/Edit Recipe Form -->
+          <div id="recipe-form-container">
+            <h3>Add/Edit Recipe</h3>
+            <form id="recipe-form">
+              <div class="first">
+                <label for="recipe-name">Recipe Name</label>
+                <input
+                  type="text"
+                  id="recipeName"
+                  name="recipe-name"
+                  required
+                />
+                <label for="recipe-image">Recipe Image</label>
+                <input type="file" id="recipeImage" name="recipe-image" />
+              </div>
+              <div class="second">
+                <label for="recipe-category">Categoty</label>
+                <select id="cat" required>
+                  <option disabled selected>Select a category</option>
+                  <option>Diabetes</option>
+                  <option>Cancer</option>
+                  <option>Obesity</option>
+                </select>
+                <label for="recipe-type">Type</label>
+                <select id="type" required>
+                  <option disabled selected>Select meal type</option>
+                  <option>Breakfast</option>
+                  <option>Lunch</option>
+                  <option>Dinner</option>
+                </select>
+              </div>
+              <label>Publisher</label>
+              <input
+                required
+                name="publisher"
+                type="text"
+                id="recipePublisher"
+              />
+              <label>Time (in minutes)</label>
+              <input required name="time" type="number" id="recipeTime" />
+
+              <div class="third">
+                <div class="ingredients">
+                  <label>Ingredients (e.g: 1 cup of water, 2kg of Pasta...)</label>
+                  <textarea
+                    id="recipe-ingredients"
+                    name="recipe-ingredients"
+                    required
+                  ></textarea>
+                 
+                </div>
+
+                <div class="instructions">
+                  <label>Instructions (e.g: Boil a cup of water for 10 mins; Put Pasta into the water;...)</label>
+                  <textarea
+                    id="recipe-instructions"
+                    name="recipe-instructions"
+                    required
+                  ></textarea>
+                  
+                </div>
+              </div>
+
+              <div class="button-container">
+                <button class="saveBtn hidden" type="button" onclick=""> Save </button>
+                <button type="button" id="upload">Upload</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Recipe List -->
+          <div id="recipe-list">
+            <h3>Recipe List</h3>
+            <div id="recipe-actions">
+              <input
+                type="text"
+                id="recipe-search"
+                placeholder="Search recipes"
+              />
+            </div>
+            <ul id="recipe-items"></ul>
+          </div>
+        </div>
+        <div id="category-management" class="dashboard-content">
+          <h2>Category Management</h2>
+
+          <!-- Add/Edit Category Form -->
+          <div id="category-form-container">
+            <h3>Add/Edit Category</h3>
+            <form id="category-form">
+              <label for="category-name">Category Name:</label>
+              <input
+                type="text"
+                id="category-name"
+                name="category-name"
+                required
+              />
+
+              <div class="button-container">
+                <button type="button" onclick="addCategory()">
+                  Add Category
+                </button>
+                <button type="button" onclick="cancelEditCategory()">
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Category List -->
+          <div id="category-list">
+            <h3>Category List</h3>
+            <div id="category-actions">
+              <input
+                type="text"
+                id="category-search"
+                placeholder="Search categories"
+                oninput="searchCategories()"
+              />
+              <button onclick="clearCategorySearch()">Clear Search</button>
+            </div>
+            <ul id="category-items"></ul>
+          </div>
+        </div>
+
+        <div id="analytics" class="dashboard-content">
+          <h2>Analytics</h2>
+
+          <div id="chart-container">
+            <canvas id="analytics-chart"></canvas>
+          </div>
+        </div>
+        <div id="settings" class="dashboard-content">
+          <h2>Settings</h2>
+
+          <!-- General Settings Form -->
+          <div id="general-settings-form-container">
+            <h3>General Settings</h3>
+            <form id="general-settings-form">
+              <label for="app-title">App Title:</label>
+              <input type="text" id="app-title" name="app-title" />
+
+              <label for="theme-color">Theme Color:</label>
+              <input type="color" id="theme-color" name="theme-color" />
+
+              <div class="button-container">
+                <button type="button" onclick="saveGeneralSettings()">
+                  Save Settings
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- User Preferences Form -->
+          <div id="user-preferences-form-container">
+            <h3>User Preferences</h3>
+            <form id="user-preferences-form">
+              <label for="language">Language:</label>
+              <select id="language" name="language">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+              </select>
+
+              <label for="timezone">Timezone:</label>
+              <select id="timezone" name="timezone">
+                <option value="utc">UTC</option>
+                <option value="est">Eastern Standard Time</option>
+                <option value="pst">Pacific Standard Time</option>
+              </select>
+
+              <div class="button-container">
+                <button type="button" onclick="saveUserPreferences()">
+                  Save Preferences
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div id="nutritionist-dashboard" class="dashboard-content">
+          <h2>Nutritionist Dashboard</h2>
+
+          <!-- Add Nutrition Information Form -->
+          <div id="nutrition-form-container">
+            <h3>Add Nutrition Information</h3>
+            <form id="nutrition-form">
+              <!-- ... (previous form fields) -->
+            </form>
+          </div>
+
+          <!-- Nutrition Data Section -->
+          <div id="nutrition-data">
+            <h3>Nutrition Data</h3>
+            <ul id="nutrition-list"></ul>
+          </div>
+
+          <!-- Nutritionist Activity Section -->
+          <div id="nutritionist-activity">
+            <h3>Nutritionist Activity</h3>
+            <p>Total Nutritionists: <span id="total-nutritionists">0</span></p>
+            <ul id="nutritionist-list"></ul>
+          </div>
+        </div>
+      </div>
+
+    <div class="overlay hidden"></div>
+    <div class="modal hidden">
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/admin.js"></script>
+  </body>
+</html>
+eeew

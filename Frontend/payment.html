@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel="stylesheet" href="./css/payment.css">
+  <style>
+    .hidden {
+      display: none;
+    }
+
+    .visible {
+      display: block;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <div class="wrapper" id="app" style="
+  justify-content: center;
+  align-items: center;
+">
+    <div class="card-form" id="cardForm">
+      <div class="card-list">
+        <div class="card-item" v-bind:class="{ '-active' : isCardFlipped }">
+          <div class="card-item__side -front">
+            <div class="card-item__focus" v-bind:class="{'-active' : focusElementStyle }"
+              v-bind:style="focusElementStyle" ref="focusElement"></div>
+            <div class="card-item__cover">
+              <img
+                v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + currentCardBackground + '.jpeg'"
+                class="card-item__bg">
+            </div>
+
+            <div class="card-item__wrapper">
+              <div class="card-item__top">
+                <img
+                  src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png"
+                  class="card-item__chip">
+                <div class="card-item__type">
+                  <transition name="slide-fade-up">
+                    <img
+                      v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + getCardType + '.png'"
+                      v-if="getCardType" v-bind:key="getCardType" alt="" class="card-item__typeImg">
+                  </transition>
+                </div>
+              </div>
+              <label for="cardNumber" class="card-item__number" ref="cardNumber">
+                <template v-if="getCardType === 'amex'">
+                  <span v-for="(n, $index) in amexCardMask" :key="$index">
+                    <transition name="slide-fade-up">
+                      <div class="card-item__numberItem"
+                        v-if="$index > 4 && $index < 14 && cardNumber.length > $index && n.trim() !== ''">*</div>
+                      <div class="card-item__numberItem" :class="{ '-active' : n.trim() === '' }" :key="$index"
+                        v-else-if="cardNumber.length > $index">
+                        {{cardNumber[$index]}}
+                      </div>
+                      <div class="card-item__numberItem" :class="{ '-active' : n.trim() === '' }" v-else
+                        :key="$index + 1">{{n}}</div>
+                    </transition>
+                  </span>
+                </template>
+
+                <template v-else>
+                  <span v-for="(n, $index) in otherCardMask" :key="$index">
+                    <transition name="slide-fade-up">
+                      <div class="card-item__numberItem"
+                        v-if="$index > 4 && $index < 15 && cardNumber.length > $index && n.trim() !== ''">*</div>
+                      <div class="card-item__numberItem" :class="{ '-active' : n.trim() === '' }" :key="$index"
+                        v-else-if="cardNumber.length > $index">
+                        {{cardNumber[$index]}}
+                      </div>
+                      <div class="card-item__numberItem" :class="{ '-active' : n.trim() === '' }" v-else
+                        :key="$index + 1">{{n}}</div>
+                    </transition>
+                  </span>
+                </template>
+              </label>
+              <div class="card-item__content">
+                <label for="cardName" class="card-item__info" ref="cardName">
+                  <div class="card-item__holder">Card Holder</div>
+                  <transition name="slide-fade-up">
+                    <div class="card-item__name" v-if="cardName.length" key="1">
+                      <transition-group name="slide-fade-right">
+                        <span class="card-item__nameItem" v-for="(n, $index) in cardName.replace(/\s\s+/g, ' ')"
+                          v-if="$index === $index" v-bind:key="$index + 1">{{n}}</span>
+                      </transition-group>
+                    </div>
+                    <div class="card-item__name" v-else key="2">Full Name</div>
+                  </transition>
+                </label>
+                <div class="card-item__date" ref="cardDate">
+                  <label for="cardMonth" class="card-item__dateTitle">Expires</label>
+                  <label for="cardMonth" class="card-item__dateItem">
+                    <transition name="slide-fade-up">
+                      <span v-if="cardMonth" v-bind:key="cardMonth">{{cardMonth}}</span>
+                      <span v-else key="2">MM</span>
+                    </transition>
+                  </label>
+                  /
+                  <label for="cardYear" class="card-item__dateItem">
+                    <transition name="slide-fade-up">
+                      <span v-if="cardYear" v-bind:key="cardYear">{{String(cardYear).slice(2,4)}}</span>
+                      <span v-else key="2">YY</span>
+                    </transition>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-item__side -back">
+            <div class="card-item__cover">
+              <img
+                v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + currentCardBackground + '.jpeg'"
+                class="card-item__bg">
+            </div>
+            <div class="card-item__band"></div>
+            <div class="card-item__cvv">
+              <div class="card-item__cvvTitle">CVV</div>
+              <div class="card-item__cvvBand">
+                <span v-for="(n, $index) in cardCvv" :key="$index">
+                  *
+                </span>
+
+              </div>
+              <div class="card-item__type">
+                <img
+                  v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + getCardType + '.png'"
+                  v-if="getCardType" class="card-item__typeImg">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-form__inner">
+        <div class="card-input">
+          <label for="cardNumber" class="card-input__label">Card Number</label>
+          <input type="text" id="cardNumber" class="card-input__input" v-mask="generateCardNumberMask"
+            v-model="cardNumber" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardNumber" autocomplete="off">
+        </div>
+        <div class="card-input">
+          <label for="cardName" class="card-input__label">Card Holders</label>
+          <input type="text" id="cardName" class="card-input__input" v-model="cardName" v-on:focus="focusInput"
+            v-on:blur="blurInput" data-ref="cardName" autocomplete="off">
+        </div>
+        <div class="card-form__row">
+          <div class="card-form__col">
+            <div class="card-form__group">
+              <label for="cardMonth" class="card-input__label">Expiration Date</label>
+              <select class="card-input__input -select" id="cardMonth" v-model="cardMonth" v-on:focus="focusInput"
+                v-on:blur="blurInput" data-ref="cardDate">
+                <option value="" disabled selected>Month</option>
+                <option v-bind:value="n < 10 ? '0' + n : n" v-for="n in 12" v-bind:disabled="n < minCardMonth"
+                  v-bind:key="n">
+                  {{n < 10 ? '0' + n : n}}
+                </option>
+              </select>
+              <select class="card-input__input -select" id="cardYear" v-model="cardYear" v-on:focus="focusInput"
+                v-on:blur="blurInput" data-ref="cardDate">
+                <option value="" disabled selected>Year</option>
+                <option v-bind:value="$index + minCardYear" v-for="(n, $index) in 12" v-bind:key="n">
+                  {{$index + minCardYear}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="card-form__col -cvv">
+            <div class="card-input">
+              <label for="cardCvv" class="card-input__label">CVV</label>
+              <input type="text" class="card-input__input" id="cardCvv" v-mask="'####'" maxlength="4" v-model="cardCvv"
+                v-on:focus="flipCard(true)" v-on:blur="flipCard(false)" autocomplete="off">
+            </div>
+          </div>
+        </div>
+
+        <button class="card-form__button">
+          Submit
+        </button>
+      </div>
+    </div>
+    <div class="hidden" id="confirmationContent">
+      <!-- Content Start -->
+      <table cellpadding="0" cellspacing="0" cols="1" bgcolor="#d7d7d7" align="center" style="max-width: 600px;">
+        <tr bgcolor="#d7d7d7">
+          <td height="50"
+            style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+          </td>
+        </tr>
+
+        <!-- This encapsulation is required to ensure correct rendering on Windows 10 Mail app. -->
+        <tr bgcolor="#d7d7d7">
+          <td
+            style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+            <!-- Seperator Start -->
+            <table cellpadding="0" cellspacing="0" cols="1" bgcolor="#d7d7d7" align="center"
+              style="max-width: 600px; width: 100%;">
+              <tr bgcolor="#d7d7d7">
+                <td height="30"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+              </tr>
+            </table>
+            <!-- Seperator End -->
+
+            <!-- Generic Pod Left Aligned with Price breakdown Start -->
+            <table align="center" cellpadding="0" cellspacing="0" cols="3" bgcolor="white" class="bordered-left-right"
+              style="border-left: 10px solid #d7d7d7; border-right: 10px solid #d7d7d7; max-width: 600px; width: 100%;">
+              <tr height="50">
+                <td colspan="3"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+              </tr>
+              <tr align="center">
+                <td width="36"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+                <td class="text-primary"
+                  style="color: #F16522; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                  <img src="http://dgtlmrktng.s3.amazonaws.com/go/emails/generic-email-template/tick.png" alt="GO"
+                    width="50" style="border: 0; font-size: 0; margin: 0; max-width: 100%; padding: 0;">
+                </td>
+                <td width="36"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+              </tr>
+              <tr height="17">
+                <td colspan="3"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+              </tr>
+              <tr align="center">
+                <td width="36"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+                <td class="text-primary"
+                  style="color: #F16522; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                  <h1
+                    style="color: #F16522; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 30px; font-weight: 700; line-height: 34px; margin-bottom: 0; margin-top: 0;">
+                    Payment received</h1>
+                </td>
+                <td width="36"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+              </tr>
+              <tr height="30">
+                <td colspan="3"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+              </tr>
+              <tr align="left">
+                <td width="36"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+                <td
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                  <p
+                    style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 22px; margin: 0;">
+                    Hi [name],
+                  </p>
+                </td>
+                <td width="36"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+              </tr>
+              <tr height="10">
+                <td colspan="3"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+              </tr>
+              <tr align="left">
+                <td width="36"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+                <td
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                  <p
+                    style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 22px; margin: 0;">
+                    Your transaction was successful!</p>
+                  <br>
+                  <p
+                    style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 22px; margin: 0; ">
+                    <strong>Payment Details:</strong><br />
+
+                    Amount: €$moneyFormatter.format(${amount}) <br />
+                    Account: ${accountNumber}.<br /></p>
+                  <br>
+                  <p
+                    style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 22px; margin: 0;">
+                    We advise to keep this receipt for future reference.&nbsp;&nbsp;&nbsp;&nbsp;<br /></p>
+                </td>
+                <td width="36"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+              </tr>
+              <tr height="30">
+                <td
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+                <td
+                  style="border-bottom: 1px solid #D3D1D1; color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+                <td
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+              </tr>
+              <tr height="30">
+                <td colspan="3"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+              </tr>
+              <tr align="center">
+                <td width="36"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+                <td
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                  <p
+                    style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 22px; margin: 0;">
+                    <strong>Transaction reference: ${authorizationCode}</strong></p>
+                  <p
+                    style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 22px; margin: 0;">
+                    Order date: [time] [date]</p>
+                  <p
+                    style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 22px; margin: 0;">
+                  </p>
+                </td>
+                <td width="36"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+              </tr>
+
+              <tr height="50">
+                <td colspan="3"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+              </tr>
+
+            </table>
+            <!-- Generic Pod Left Aligned with Price breakdown End -->
+
+            <!-- Seperator Start -->
+            <table cellpadding="0" cellspacing="0" cols="1" bgcolor="#d7d7d7" align="center"
+              style="max-width: 600px; width: 100%;">
+              <tr bgcolor="#d7d7d7">
+                <td height="50"
+                  style="color: #464646; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px; vertical-align: top;">
+                </td>
+              </tr>
+            </table>
+            <!-- Seperator End -->
+
+          </td>
+        </tr>
+      </table>
+      <!-- Content End -->
+    </div>
+  </div>
+
+
+  <!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js'></script>
+  <script src='https://unpkg.com/vue-the-mask@0.11.1/dist/vue-the-mask.js'></script>
+  <script src="./js/payment.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Get references to the form and confirmation content
+      var cardForm = document.getElementById("cardForm");
+      var confirmationContent = document.getElementById("confirmationContent");
+
+      // Get reference to the Submit button
+      var submitButton = document.querySelector('.card-form__button');
+
+      // Add click event listener to the Submit button
+      submitButton.addEventListener('click', function () {
+        // Hide the form
+        cardForm.classList.add('hidden');
+        // Show the confirmation content
+        confirmationContent.classList.remove('hidden');
+        confirmationContent.classList.add('visible');
+      });
+    });
+  </script>
+
+</body>
+
+</html>

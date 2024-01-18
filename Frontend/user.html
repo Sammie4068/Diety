@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./css/user.css" />
+  </head>
+  <body>
+    <header>
+      <a href="index.html"><h4 class="header__logo">Diety</h4></a>
+      <!-- <h1 class="title">User Profile</h1> -->
+    </header>
+
+    <div class="container">
+      <div class="profile">
+        <img
+          src="https://res.cloudinary.com/okorosamuel/image/upload/v1699871731/cld-sample-4.jpg"
+          alt="Profile Picture"
+        />
+        <div class="profile-info">
+          <span>
+            <label>Name: </label>
+            <input class="name" type="text" readonly />
+          </span>
+          <span>
+            <label>E-mail: </label>
+            <input class="email" type="text" readonly />
+          </span>
+          <span>
+            <label>Phone: </label>
+            <input class="phone" type="text" readonly />
+          </span>
+        </div>
+        <a href="#" class="button" id="edit__btn">Edit Profile</a>
+      </div>
+      <hr />
+      <div id="bookmark__results">
+        <h2>Bookmarked Recipes</h2>
+        <ul id="bookmarks"></ul>
+      </div>
+      <hr />
+      <h2>Purchase history</h2>
+      <p>Coming soon...</p>
+    </div>
+    <script src="./js/user.js"></script>
+  </body>
+</html>
