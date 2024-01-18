@@ -22,7 +22,7 @@ search.addEventListener("submit", (e) => {
 });
 
 // Get recipes
-const baseURL = "http://localhost:3000/api/v1/";
+const baseURL = "https://diety-k85n.onrender.com/api/v1/";
 
 async function getRecipes(url, parentEle) {
   try {
@@ -95,7 +95,9 @@ async function showRecipe() {
   try {
     const id = window.location.hash.slice(1);
     if (!id) return;
-    const res = await fetch(`http://localhost:3000/api/v1/recipes/id/${id}`);
+    const res = await fetch(
+      `https://diety-k85n.onrender.com/api/v1/recipes/id/${id}`
+    );
     const data = await res.json();
     console.log(data);
     const markup = `<figure class="recipe__fig">
@@ -186,7 +188,10 @@ async function showRecipe() {
     const localBmks = JSON.parse(localStorage.getItem("bookmarks"));
     const bookmarkList = document.querySelector(".bookmarks__list");
     localBmks.forEach((bm) => {
-      getRecipes(`http://localhost:3000/api/v1/recipes/id/${bm}`, bookmarkList);
+      getRecipes(
+        `https://diety-k85n.onrender.com/api/v1/recipes/id/${bm}`,
+        bookmarkList
+      );
     });
   } catch (err) {
     console.error(`Error: ${err}`);
@@ -203,7 +208,7 @@ window.addEventListener("load", displayRecipes);
 //fetching all recipes
 async function displayRecipes() {
   try {
-    const res = await fetch(`http://localhost:3000/api/v1/recipes`);
+    const res = await fetch(`https://diety-k85n.onrender.com/api/v1/recipes`);
     const data = await res.json();
 
     data.data.map((bodydata) => {
@@ -277,7 +282,9 @@ async function recipeModal(id) {
     `<button class="close-modal" onclick="closeModal()">&times;</button>`
   );
 
-  const response = await fetch(`http://localhost:3000/api/v1/recipes/id/${id}`);
+  const response = await fetch(
+    `https://diety-k85n.onrender.com/api/v1/recipes/id/${id}`
+  );
   const data = await response.json();
 
   const instructionsArray = data[0].instructions;
@@ -324,6 +331,9 @@ function addBookmark(id) {
   }
 
   localBmks.forEach((bm) => {
-    getRecipes(`http://localhost:3000/api/v1/recipes/id/${bm}`, bookmarkList);
+    getRecipes(
+      `https://diety-k85n.onrender.com/api/v1/recipes/id/${bm}`,
+      bookmarkList
+    );
   });
 }

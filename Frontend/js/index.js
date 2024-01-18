@@ -110,7 +110,7 @@ function confirmPasswordValidation() {
 confirmPassword.addEventListener("input", confirmPasswordValidation);
 
 // Post request to server
-const baseURL = "http://localhost:3000/api/v1/";
+const baseURL = "https://diety-k85n.onrender.com/api/v1/";
 
 async function postData(url, data) {
   try {

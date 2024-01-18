@@ -32,8 +32,8 @@ SignupForm.addEventListener("submit", (e) => {
   emailValidation();
   passwordValidation();
   confirmPasswordValidation();
-  postData(`${baseURL}register`, userData)
-  console.log(username.value.trim())
+  postData(`${baseURL}register`, userData);
+  console.log(username.value.trim());
 });
 
 function nameValidation() {
@@ -89,27 +89,26 @@ function confirmPasswordValidation() {
 confirmPassword.addEventListener("input", confirmPasswordValidation);
 
 // Post request to server
-const baseURL = "http://localhost:3000/users/"
+const baseURL = "https://diety-k85n.onrender.com/users/";
 
 async function postData(url, data) {
-    try {
-        const res = await fetch(url, {
-            method: "POST",
-            headers:{
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
-        const bodydata = await res.json()
-        console.log(bodydata);
-    } catch (err) {
-        console.error(`Error: ${err}`);
-    }
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const bodydata = await res.json();
+    console.log(bodydata);
+  } catch (err) {
+    console.error(`Error: ${err}`);
+  }
 }
 
 let userData = {
   name: username.value.trim(),
   email: email.value.trim(),
-  password: password.value
-}
-
+  password: password.value,
+};

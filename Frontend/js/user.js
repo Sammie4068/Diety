@@ -34,7 +34,7 @@ async function save() {
       id,
     };
 
-    const res = await fetch(`http://localhost:3000/api/v1/user`, {
+    const res = await fetch(`https://diety-k85n.onrender.com/api/v1/user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -89,8 +89,11 @@ async function getRecipes(url, parentEle) {
   }
 }
 
-const baseURL = "http://localhost:3000/api/v1/";
+const baseURL = "https://diety-k85n.onrender.com/api/v1/";
 
 localBmks.forEach((bm) => {
-  getRecipes(`http://localhost:3000/api/v1/recipes/id/${bm}`, bookmarks);
+  getRecipes(
+    `https://diety-k85n.onrender.com/api/v1/recipes/id/${bm}`,
+    bookmarks
+  );
 });

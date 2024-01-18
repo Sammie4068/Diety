@@ -59,11 +59,11 @@ function hideAllContent() {
 //dashboard numbers
 async function displayDashboardStats() {
   try {
-    const res = await fetch(`http://localhost:3000/api/v1/register`);
+    const res = await fetch(`https://diety-k85n.onrender.com/api/v1/register`);
     const data = await res.json();
     const number = data.number;
 
-    const resp = await fetch(`http://localhost:3000/api/v1/recipes`);
+    const resp = await fetch(`https://diety-k85n.onrender.com/api/v1/recipes`);
     const recData = await resp.json();
     const recNum = recData.number;
 
@@ -82,7 +82,7 @@ const overlay = document.querySelector(".overlay");
 // Function to display recipes in the list
 async function displayRecipes() {
   try {
-    const res = await fetch(`http://localhost:3000/api/v1/recipes`);
+    const res = await fetch(`https://diety-k85n.onrender.com/api/v1/recipes`);
     const data = await res.json();
     const recipes = data.data;
 
@@ -179,7 +179,7 @@ function closeModal() {
 async function deleteRecipe(id) {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/v1/recipes/delete/${id}`,
+      `https://diety-k85n.onrender.com/api/v1/recipes/delete/${id}`,
       {
         method: "DELETE",
         headers: {
@@ -209,7 +209,7 @@ const activeBtn = document.querySelector(".activeBtn");
 
 async function displayUsers() {
   try {
-    const res = await fetch(`http://localhost:3000/api/v1/register`);
+    const res = await fetch(`https://diety-k85n.onrender.com/api/v1/register`);
     const data = await res.json();
     const users = data.data;
 
@@ -245,7 +245,7 @@ async function displayUsers() {
             bmArr.forEach(async (bm) => {
               console.log(typeof bm);
               const res = await fetch(
-                `http://localhost:3000/api/v1/recipes/id/${bm}`
+                `https://diety-k85n.onrender.com/api/v1/recipes/id/${bm}`
               );
               const data = await res.json();
               const recipe = data[0];
@@ -316,7 +316,7 @@ async function displayUsers() {
 
           bmArr.forEach(async (bm) => {
             const res = await fetch(
-              `http://localhost:3000/api/v1/recipes/id/${bm}`
+              `https://diety-k85n.onrender.com/api/v1/recipes/id/${bm}`
             );
             const data = await res.json();
             const recipe = data[0];
@@ -375,7 +375,7 @@ async function userInfo(user) {
 }
 
 async function active(id) {
-  const res = await fetch(`http://localhost:3000/api/v1/active`, {
+  const res = await fetch(`https://diety-k85n.onrender.com/api/v1/active`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -576,7 +576,7 @@ recipeBar.addEventListener("click", (e) => {
 //ADDING RECIPES
 async function postData(data) {
   try {
-    const res = await fetch(`http://localhost:3000/api/v1/recipes`, {
+    const res = await fetch(`https://diety-k85n.onrender.com/api/v1/recipes`, {
       method: "POST",
       body: data,
     });
@@ -620,7 +620,9 @@ uploadBtn.addEventListener("click", (e) => {
 
 async function editRecipe(id) {
   try {
-    const res = await fetch(`http://localhost:3000/api/v1/recipes/id/${id}`);
+    const res = await fetch(
+      `https://diety-k85n.onrender.com/api/v1/recipes/id/${id}`
+    );
     const data = await res.json();
     localStorage.setItem("recipeID", data[0].id);
     recipeName.value = data[0].name;
@@ -663,10 +665,13 @@ saveBtn.addEventListener("click", () => {
 // fnction to update recipe
 async function updateRecipe(data) {
   try {
-    const res = await fetch(`http://localhost:3000/api/v1/recipes/update`, {
-      method: "POST",
-      body: data,
-    });
+    const res = await fetch(
+      `https://diety-k85n.onrender.com/api/v1/recipes/update`,
+      {
+        method: "POST",
+        body: data,
+      }
+    );
     const bodydata = await res.json();
     if (bodydata.message == "success") {
       location.reload();

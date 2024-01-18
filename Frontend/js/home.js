@@ -84,7 +84,7 @@ function logout() {
 
 async function addBmk(data) {
   try {
-    const res = fetch(`http://localhost:3000/api/v1/user/bookmark`, {
+    const res = fetch(`https://diety-k85n.onrender.com/api/v1/user/bookmark`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
